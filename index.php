@@ -14,4 +14,3 @@ require_once "Models/enlacesModel.php";
 
 $plantilla = new PlantillaC();
 $plantilla -> cargarPlantilla();
-//linea agregada
