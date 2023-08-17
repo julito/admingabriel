@@ -3,7 +3,7 @@
 class EnlacesModels{ 
 
 	public static function enlaces($enlaces){
-	     if(  $enlaces == "home"){
+	     if(  $enlaces == "home" || $enlaces == "tables"){
 
 			$module = "views/Modules/".$enlaces.".php";
 		}	
