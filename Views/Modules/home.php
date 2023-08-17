@@ -24,7 +24,9 @@ $rango2=intval(strtotime($fechafin));
    $contreservas=0;
    $montos1=0;
    $porcentaje1=0;
+   $porcentajeacumulado=0;
    $ganancia1=0;
+   $reservaspendientes=0;
 
    foreach ($datos as $item) {
       $fechar=intval(strtotime(substr($item->hecho, 0, 10)));
@@ -39,11 +41,19 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->reservaciones_detalle . '</td>
       </tr>';
       $contreservas++;
-      $montos1+=$item->reservaciones_monto;
-      $porcentaje1+=$item->reservaciones_monto*0.10;
-      $ganancia1=$montos1-$porcentaje1;
+      
+      $montos1+= floatval($item->reservaciones_monto) ;
+      $porcentaje1+=floatval($item->reservaciones_monto)*0.10;
+      if($item->estado==0)
+      {
+         $porcentajeacumulado+=$porcentaje1;
+         $reservaspendientes++;
 
-      //$sumatours+=$item->reservaciones_monto+$reservaciones_monto;
+      }
+      
+      
+
+     
    }
 
    $datos2 = $reservas->ctrCargarReservasTravel();
@@ -92,7 +102,7 @@ $rango2=intval(strtotime($fechafin));
       /* $tbres.='<tr>
       <td>' . $item->reservaciones_monto. '</td>
       </tr>'; */
-      $montos+=$item->reservaciones_monto+$reservaciones_monto;
+      $montos+=$item->reservaciones_monto;
       $porcentaje+=$item->reservaciones_monto*0.10;
       $ganancia=$montos-$porcentaje;
    $contamenities++;
@@ -202,21 +212,22 @@ $rango2=intval(strtotime($fechafin));
                                        <table class="table">
                                        <tbody>
                                              <tr>
-                                                <th style="width:50%">Total Balance:</th>
+                                                <th style="width:50%">Total Amount:</th>
                                                 <td>$ <?=$montos1?></td>
                                              </tr>
                                              <tr>
+                                                <th>Pending Collections:</th>
+                                                <td><?=$reservaspendientes?> Reservations</td>
+                                             </tr>
+                                             <tr>
                                                 <th>Hotel Porcentage (10%)</th>
-                                                <td>$ <?=$porcentaje?></td>
+                                                <td>$ <?=$porcentaje1?></td>
                                              </tr>
                                              <tr>
                                                 <th>Profit Balance:</th>
                                                 <td>$ <?=$ganancia1?></td>
                                              </tr>
-                                             <tr>
-                                                <th>Pending Collections:</th>
-                                                <td><?=$contestados?> Reservations</td>
-                                             </tr>
+                                           
                                           </tbody>
                                        </table>
                                     </div>
@@ -299,7 +310,5 @@ $rango2=intval(strtotime($fechafin));
                      </div>
 
    </div>
-
-
 
 </div>
