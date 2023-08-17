@@ -27,29 +27,32 @@ $rango2=intval(strtotime($fechafin));
    $porcentajeacumulado=0;
    $ganancia1=0;
    $reservaspendientes=0;
+   $reservaspagadas=0;
 
    foreach ($datos as $item) {
       $fechar=intval(strtotime(substr($item->hecho, 0, 10)));
       if(!($fechar>=$rango1 && $fechar<=$rango2) )
       continue;
-      $tablareresevas.= '<tr>
+/*       $tablareresevas.= '<tr>
       <td><i class="flaticon-download text-danger"></i></td>
       <td>' . substr($item->hecho, 0, 10) . '</td>
       <td>' . $item->nombre . '</td>
       <td>' . $item->reservaciones_name . '</td>
       <td>' . $item->reservaciones_monto . '</td>
       <td>' . $item->reservaciones_detalle . '</td>
-      </tr>';
+      </tr>'; */
       $contreservas++;
       
       $montos1+= floatval($item->reservaciones_monto) ;
       $porcentaje1+=floatval($item->reservaciones_monto)*0.10;
       if($item->estado==0)
       {
-         $porcentajeacumulado+=$porcentaje1;
+         $porcentajeacumulado+=floatval($item->reservaciones_monto)*0.10;
          $reservaspendientes++;
 
       }
+      else
+      $reservaspagadas+=floatval($item->reservaciones_monto)*0.10;
       
       
 
@@ -216,16 +219,22 @@ $rango2=intval(strtotime($fechafin));
                                                 <td>$ <?=$montos1?></td>
                                              </tr>
                                              <tr>
+                                             <th>Hotel Porcentage (10%)</th>
+                                                <td>$ <?=$porcentaje1?></td>
+                                             </tr>
+
+                                             
+                                             <tr>
+                                                <th>Paid:</th>
+                                                <td>$ <?=$reservaspagadas?></td>
+                                             </tr>
+                                             <tr>
                                                 <th>Pending Collections:</th>
                                                 <td><?=$reservaspendientes?> Reservations</td>
                                              </tr>
                                              <tr>
-                                                <th>Hotel Porcentage (10%)</th>
-                                                <td>$ <?=$porcentaje1?></td>
-                                             </tr>
-                                             <tr>
                                                 <th>Profit Balance:</th>
-                                                <td>$ <?=$ganancia1?></td>
+                                                <td>$ <?=$porcentajeacumulado?></td>
                                              </tr>
                                            
                                           </tbody>
