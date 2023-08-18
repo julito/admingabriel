@@ -32,14 +32,14 @@ $rango2=intval(strtotime($fechafin));
       $fechar=intval(strtotime(substr($item->hecho, 0, 10)));
       if(!($fechar>=$rango1 && $fechar<=$rango2) )
       continue;
-      /*$tablareresevas.= '<tr>
+      $tablareresevas.= '<tr>
       <td><i class="flaticon-download text-danger"></i></td>
       <td>' . substr($item->hecho, 0, 10) . '</td>
       <td>' . $item->nombre . '</td>
       <td>' . $item->reservaciones_name . '</td>
       <td>' . $item->reservaciones_monto . '</td>
       <td>' . $item->reservaciones_detalle . '</td>
-      </tr>'; */
+      </tr>';
 
       $contreservas++;
       
@@ -66,7 +66,7 @@ $rango2=intval(strtotime($fechafin));
       $fechar=intval(strtotime(substr($item->hecho, 0, 10)));
       if(!($fechar>=$rango1 && $fechar<=$rango2) )
       continue;
-      /*$tablatravel.= '<tr>
+      $tablatravel.= '<tr>
       <td><i class="flaticon-download text-danger"></i></td>
       <td>' . substr($item->hecho, 0, 10) . '</td>
       <td>' . $item->nombre . '</td>
@@ -75,7 +75,7 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->destino . '</td>
       <td>' . $item->personas . '</td>
       <td>' . $item->total . '</td>
-      </tr>';*/
+      </tr>';
       $conttransporte++;
       $montos2+=floatval($item->total);
       $porcentaje2+=floatval($item->total)*0.10;
@@ -100,7 +100,7 @@ $rango2=intval(strtotime($fechafin));
       $fechar=intval(strtotime(substr($item->hecho, 0, 10)));
       if(!($fechar>=$rango1 && $fechar<=$rango2) )
       continue;
-     /* $$tablaamenities.= '<tr>
+      $tablaamenities.= '<tr>
       <td><i class="flaticon-download text-danger"></i></td>
       <td>' . substr($item->hecho, 0, 10) . '</td>
       <td>' . $item->nombre . '</td>
@@ -108,12 +108,7 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->reservaciones_monto . '</td>
       <td>' . $item->reservaciones_detalle . '</td>
       </tr>';
-      tbres.='<tr>
-      <td>' . $item->reservaciones_monto. '</td>
-      </tr>'; */
-      /*$montos+=$item->reservaciones_monto;
-      $porcentaje+=$item->reservaciones_monto*0.10;
-      $ganancia=$montos-$porcentaje;*/
+      
    $contamenities++;
    $montos3+=floatval($item->reservaciones_monto);
       $porcentaje3+=floatval($item->reservaciones_monto)*0.10;
@@ -321,10 +316,137 @@ $rango2=intval(strtotime($fechafin));
                      </div>
                      <!-- end row -->
                   </div>
-                  <!-- footer -->
-                  <div class="container-fluid">
-                     <div class="footer">
-                        <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
-                     </div>
+
+
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+
+         <!-- MOSTAR DATOS EN TABLA -->
+         <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                     <h2>TOURS RESERVATIONS</h2>
+                  </div> 
+               </div>
+               <div class="table_section padding_infor_info">
+                  <div class="table-responsive-sm">
+                     <table  id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+                        <thead>
+                           <tr class="table-danger">
+                              <th>View</th>
+                              <th>Date</th>
+                              <th>Name</th>
+                              <th>Tour</th>
+                              <th>Amount</th>
+                              <th>Details</th>
+
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <?= $tablareresevas ?>
+                        </tbody>
+                     </table>
                   </div>
                </div>
+            </div>
+         </div>
+
+         <!-- MOSTAR DATOS EN TABLA -->
+         <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                     <h2>TRANSPORTATION RESERVATIONS</h2>
+                  </div>
+               </div>
+               <div class="table_section padding_infor_info">
+                  <div class="table-responsive-sm">
+                     <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+                        <thead>
+                           <tr class="table-danger">
+                              <th>View</th>
+                              <th>Date</th>
+                              <th>Name</th>
+                              <th>Service</th>
+                              <th>Origin</th>
+                              <th>Destination</th>
+                              <th>Passenger</th>
+                              <th>Amount</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <?= $tablatravel ?>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <!-- MOSTAR DATOS EN TABLA -->
+         <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                     <h2>AMENITIES</h2>
+                  </div> 
+               </div>
+               <div class="table_section padding_infor_info">
+                  <div class="table-responsive-sm">
+                     <table  id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+                        <thead>
+                           <tr class="table-danger">
+                              <th>View</th>
+                              <th>Date</th>
+                              <th>Name</th>
+                              <th>Tour</th>
+                              <th>Amount</th>
+                              <th>Details</th>
+
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <?= $tablaamenities  ?>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+      </div>
+   </div>
+
+
+</div>
+<!-- footer -->
+<div class="container-fluid">
+   <div class="footer">
+      <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
+   </div>
+</div>
+</div>
+
+
+<script>
+   new DataTable('.table', {
+    responsive: {
+        details: {
+            display: DataTable.Responsive.display.modal({
+                header: function (row) {
+                    var data = row.data();
+                    return 'Details for ' + data[2] ;
+                }
+            }),
+            renderer: DataTable.Responsive.renderer.tableAll({
+                tableClass: 'table'
+            })
+        }
+    }
+});
+</script>
+
+
