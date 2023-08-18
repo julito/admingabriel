@@ -67,35 +67,38 @@
                 
                </div>
                <div class="sidebar_blog_2">
-                  <h4>Reservaciones</h4>
+                  <h4>Reservations</h4>
                   <ul class="list-unstyled components">
                      <li class="active">
-                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Reportes</span></a>
+                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Reports</span></a>
                         <ul class="collapse list-unstyled" id="dashboard">
                            <li>
-                              <a href="">> <span>Opcion 1</span></a>
+                              <a href="tablatour">> <span>Tours</span></a>
                            </li>
                            <li>
-                              <a href="">> <span>Opcion 2</span></a>
+                              <a href="tablatravel">> <span>Travels</span></a>
+                           </li>
+                           <li>
+                              <a href="tablaamenities">> <span>Amenities</span></a>
                            </li>
                         </ul>
                      </li>
                      
-                     <li><a href=""><i class="fa fa-table purple_color2"></i> <span>Tables</span></a></li>
+                     <!--<li><a href=""><i class="fa fa-table purple_color2"></i> <span>Tables</span></a></li>-->
                      
                      
                      <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
+                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cogs yellow_color"></i> <span>Settings</span></a>
                         <ul class="collapse list-unstyled" id="additional_page">
                            <li>
-                              <a href="profile.html">> <span>Perfil</span></a>
+                              <a href="perfil">> <span>Profile</span></a>
                            </li>
                            
-                           <li>
+                           <!--<li>
                               <a href="login.html">> <span>Acceso</span></a>
-                           </li>
+                           </li>-->
                            <li>
-                           <a class="dropdown-item" href="#"><span>Salir</span> <i class="fa fa-sign-out"></i></a>
+                           <a href="salir">> <span>Log Out</span></a>
                            </li>
                         </ul>
                      
@@ -115,11 +118,11 @@
                               
                               <ul class="user_profile_dd">
                                  <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="" alt="" /><span class="name_user">Usuario</span></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="" alt="" /><span class="name_user">User</span></a>
                                     <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="">Perfil</a>
+                                       <a class="dropdown-item" href="perfil">Profile</a>
                                        
-                                       <a class="dropdown-item" href="#"><span>Salir</span> <i class="fa fa-sign-out"></i></a>
+                                       <a class="dropdown-item" href="salir"><span>log Out</span> <i class="fa fa-sign-out"></i></a>
                                     </div>
                                  </li>
                               </ul>
