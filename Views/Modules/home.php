@@ -210,7 +210,7 @@ $rango2=intval(strtotime($fechafin));
                                                 </div>
                                              </div>
                                              <div class="price_table_bottom">
-                                                <div class="center"><a class="main_bt" href="tablatour">View Details</a></div>
+                                                <div class="center"><a class="main_bt" href="tourinfo">View Details</a></div>
                                              </div>
                                           </div>
                                        </div>
@@ -332,7 +332,7 @@ $rango2=intval(strtotime($fechafin));
                </div>
                <div class="table_section padding_infor_info">
                   <div class="table-responsive-sm">
-                     <table  id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+                     <table class="table table-striped table-bordered nowrap table1" style="width:100%">
                         <thead>
                            <tr class="table-danger">
                               <th>View</th>
@@ -345,7 +345,7 @@ $rango2=intval(strtotime($fechafin));
                            </tr>
                         </thead>
                         <tbody>
-                           <?= $tablareresevas ?>
+                            <?= $tablareresevas ?> 
                         </tbody>
                      </table>
                   </div>
@@ -363,7 +363,7 @@ $rango2=intval(strtotime($fechafin));
                </div>
                <div class="table_section padding_infor_info">
                   <div class="table-responsive-sm">
-                     <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+                     <table  class="table table-striped table-bordered nowrap table1" style="width:100%">
                         <thead>
                            <tr class="table-danger">
                               <th>View</th>
@@ -377,7 +377,7 @@ $rango2=intval(strtotime($fechafin));
                            </tr>
                         </thead>
                         <tbody>
-                           <?= $tablatravel ?>
+                            <?= $tablatravel ?> 
                         </tbody>
                      </table>
                   </div>
@@ -395,28 +395,25 @@ $rango2=intval(strtotime($fechafin));
                </div>
                <div class="table_section padding_infor_info">
                   <div class="table-responsive-sm">
-                     <table  id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+                     <table  class="table table-striped table-bordered nowrap table1" style="width:100%">
                         <thead>
                            <tr class="table-danger">
                               <th>View</th>
                               <th>Date</th>
                               <th>Name</th>
-                              <th>Tour</th>
+                              <th>Package</th>
                               <th>Amount</th>
                               <th>Details</th>
-
                            </tr>
                         </thead>
                         <tbody>
-                           <?= $tablaamenities  ?>
+                          <?= $tablaamenities  ?> 
                         </tbody>
                      </table>
                   </div>
                </div>
             </div>
          </div>
-
-
       </div>
    </div>
 
@@ -432,7 +429,11 @@ $rango2=intval(strtotime($fechafin));
 
 
 <script>
-   new DataTable('.table', {
+$(document).ready(()=>{
+
+
+
+   new DataTable('.table1', {
     responsive: {
         details: {
             display: DataTable.Responsive.display.modal({
@@ -442,11 +443,18 @@ $rango2=intval(strtotime($fechafin));
                 }
             }),
             renderer: DataTable.Responsive.renderer.tableAll({
-                tableClass: 'table'
+                tableClass: 'table1'
             })
         }
     }
 });
+
+
+
+
+})
+
+
 </script>
 
 
