@@ -2,7 +2,7 @@
 define('DS',DIRECTORY_SEPARATOR);
 define('ROOT',realpath(dirname(__FILE__)).DS);
 define('VISTAS',ROOT.'Views'.DS.'Modules'.DS);
-define('RUTAASSETS','http://localhost/admingabriel/views/assets/');
+define('RUTAASSETS','http://192.168.1.102/admingabriel/views/assets/');
 
 require_once "Controllers/plantillaController.php";
 require_once "Controllers/reservasController.php";

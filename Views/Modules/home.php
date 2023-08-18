@@ -153,66 +153,38 @@ $rango2=intval(strtotime($fechafin));
          </div>
       </div>
 
-      <div class="row column1">
-         <div class="col-md-6 col-lg-4">
-            <div class="full counter_section margin_bottom_30">
-               <div class="couter_icon">
-                  <div>
-                     <i class="fa fa-users yellow_color"></i>
-                  </div>
-               </div>
-               <div class="counter_no">
-                  <div>
-                     <p class="total_no"><?= $contreservas ?></p>
-                     <p class="head_couter">TOURS RESERVATIONS</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-6 col-lg-4">
-            <div class="full counter_section margin_bottom_30">
-               <div class="couter_icon">
-                  <div>
-                     <i class="fa fa-bus blue1_color"></i>
-                  </div>
-               </div>
-               <div class="counter_no">
-                  <div>
-                     <p class="total_no"><?= $conttransporte ?></p>
-                     <p class="head_couter">TRANSPORT RESERVATIONS</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-6 col-lg-4">
-            <div class="full counter_section margin_bottom_30">
-               <div class="couter_icon">
-                  <div>
-                     <i class="fa fa-bed purple_color"></i>
-                  </div>
-               </div>
-               <div class="counter_no">
-                  <div>
-                     <p class="total_no"><?= $contamenities ?></p>
-                     <p class="head_couter">AMENITIES RESERVATION </p>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+      
 
-      <div class="row">
-                        
-                        <div class="col-md-4">
-                           <div class="full white_shd">
+      
+   </div>
+
+</div>
+
+               <div class="midde_cont">
+                  <div class="container-fluid">
+                     <div class="row column1">
+                        <div class="col-md-12">
+                           <div class="white_shd full margin_bottom_30">
                               <div class="full graph_head">
                                  <div class="heading1 margin_0">
-                                    <h2>TOURS DETAILS</h2>
+                                    <h2>SERVICES</h2>
                                  </div>
                               </div>
-                              <div class="full padding_infor_info">
-                                 <div class="price_table">
-                                    <div class="table-responsive">
+                              <div class="full price_table padding_infor_info">
+                                 <div class="row">
+                                    <!-- column price --> 
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                       <div class="table_price full">
+                                          <div class="inner_table_price">
+                                             <div class="price_table_head blue1_bg">
+                                                <h2>TOURS</h2>
+                                             </div>
+                                             <div class="price_table_inner">
+                                                <div class="cont_table_price_blog">
+                                                   <p class="blue1_color"><span class="price_no"><?= $contreservas ?></span></p>
+                                                </div>
+                                                <div class="cont_table_price">
+                                                   <div class="table-responsive">
                                        <table class="table">
                                        <tbody>
                                              <tr>
@@ -240,21 +212,27 @@ $rango2=intval(strtotime($fechafin));
                                           </tbody>
                                        </table>
                                     </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-
-                        <div class="col-md-4">
-                           <div class="full white_shd">
-                              <div class="full graph_head">
-                                 <div class="heading1 margin_0">
-                                    <h2>TRA DETAILS</h2>
-                                 </div>
-                              </div>
-                              <div class="full padding_infor_info">
-                                 <div class="price_table">
-                                    <div class="table-responsive">
+                                                </div>
+                                             </div>
+                                             <div class="price_table_bottom">
+                                                <div class="center"><a class="main_bt" href="tablatour">View Details</a></div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- end column price -->
+                                    <!-- column price --> 
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                       <div class="table_price full">
+                                          <div class="inner_table_price">
+                                             <div class="price_table_head green_bg">
+                                                <h2>TRAVELS</h2>
+                                             </div>
+                                             <div class="price_table_inner">
+                                                <div class="cont_table_price_blog">
+                                                   <p class="green_color"><span class="price_no"><?= $conttransporte ?></span></p>
+                                                </div>
+                                                <div class="table-responsive">
                                        <table class="table">
                                        <tbody>
                                              <tr>
@@ -280,21 +258,26 @@ $rango2=intval(strtotime($fechafin));
                                           </tbody>
                                        </table>
                                     </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-
-                        <div class="col-md-4">
-                           <div class="full white_shd">
-                              <div class="full graph_head">
-                                 <div class="heading1 margin_0">
-                                    <h2>AMENITIES DETAILS</h2>
-                                 </div>
-                              </div>
-                              <div class="full padding_infor_info">
-                                 <div class="price_table">
-                                    <div class="table-responsive">
+                                             </div>
+                                             <div class="price_table_bottom">
+                                                <div class="center"><a class="main_bt" href="tablatravel">View Details</a></div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- end column price -->
+                                    <!-- column price --> 
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                       <div class="table_price full">
+                                          <div class="inner_table_price">
+                                             <div class="price_table_head red_bg">
+                                                <h2>AMENENITIES</h2>
+                                             </div>
+                                             <div class="price_table_inner">
+                                                <div class="cont_table_price_blog">
+                                                   <p class="red_color"><span class="price_no"><?= $contamenities ?></span></p>
+                                                </div>
+                                                <div class="table-responsive">
                                        <table class="table">
                                           <tbody>
                                              <tr>
@@ -320,11 +303,28 @@ $rango2=intval(strtotime($fechafin));
                                           </tbody>
                                        </table>
                                     </div>
+                                             </div>
+                                             <div class="price_table_bottom">
+                                                <div class="center"><a class="main_bt" href="tablaamenities">View Details</a></div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- end column price -->
+                                    <!-- column price --> 
+                                    
+                                    <!-- end column price -->
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-   </div>
-
-</div>
+                     <!-- end row -->
+                  </div>
+                  <!-- footer -->
+                  <div class="container-fluid">
+                     <div class="footer">
+                        <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
+                     </div>
+                  </div>
+               </div>

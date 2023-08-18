@@ -8,13 +8,13 @@ class Ruta{
 
 	static public function ctrRuta(){
 
-		return "http://localhost/admingabriel/";
+		return "http://192.168.1.102/admingabriel/";
 	
 	}
 
 	static public function ctrRutaAssets(){
 
-		return "http://localhost/admingabriel/Views/assets/";
+		return "http://192.168.1.102/admingabriel/Views/assets/";
 	
 	}
 
