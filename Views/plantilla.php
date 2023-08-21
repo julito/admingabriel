@@ -63,18 +63,16 @@
          <div class="inner_container">
             <!-- Sidebar  -->
             <nav id="sidebar">
-               <div class="sidebar_blog_1">
-                
-               </div>
+               
                <div class="sidebar_blog_2">
                   <a href="home"><h4>Reservations</h4></a>
+                  <div class="sidebar_blog_1">
+                        <a href="home"><h4><i class="fa fa-bank yellow_color mr-3"></i>>Home</h4></a>
+                  </div>
                   <ul class="list-unstyled components">
                      <li class="active">
-                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Reports</span></a>
+                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-list yellow_color"></i> <span>Reports</span></a>
                         <ul class="collapse list-unstyled" id="dashboard">
-                           <li>
-                              <a href="home">> <span>Home</span></a>
-                           </li>
                            <li>
                               <a href="tourinfo">> <span>Tours</span></a>
                            </li>
@@ -87,19 +85,12 @@
                         </ul>
                      </li>
                      
-                     <!--<li><a href=""><i class="fa fa-table purple_color2"></i> <span>Tables</span></a></li>-->
-                     
-                     
                      <li class="active">
                         <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cogs yellow_color"></i> <span>Settings</span></a>
                         <ul class="collapse list-unstyled" id="additional_page">
                            <li>
                               <a href="perfil">> <span>Profile</span></a>
                            </li>
-                           
-                           <!--<li>
-                              <a href="login.html">> <span>Acceso</span></a>
-                           </li>-->
                            <li>
                            <a href="salir">> <span>Log Out</span></a>
                            </li>

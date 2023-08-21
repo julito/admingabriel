@@ -32,7 +32,20 @@ $rango2=intval(strtotime($fechafin));
       $fechar=intval(strtotime(substr($item->hecho, 0, 10)));
       if(!($fechar>=$rango1 && $fechar<=$rango2) )
       continue;
-      $tablareresevas.= '<tr>
+      if($item->estado == 0){
+         $tablareresevas.= '<tr">
+      <td class="bg-danger"><i class="flaticon-download text-white"></i></td>
+      <td>' . substr($item->hecho, 0, 10) . '</td>
+      <td>' . $item->nombre . '</td>
+      <td>' . $item->reservaciones_name . '</td>
+      <td>' . $item->reservaciones_monto . '</td>
+      <td>' . $item->reservaciones_detalle . '</td>
+      <td>' . $item->estado . '</td>
+      <td class="text-center"><i class="fa fa-trash text-danger"></i></td>
+      
+      </tr>';
+      }else{
+         $tablareresevas.= '<tr>
       <td><i class="flaticon-download text-danger"></i></td>
       <td>' . substr($item->hecho, 0, 10) . '</td>
       <td>' . $item->nombre . '</td>
@@ -43,6 +56,8 @@ $rango2=intval(strtotime($fechafin));
       <td class="text-center"><i class="fa fa-trash text-danger"></i></td>
       
       </tr>';
+      }
+      
 
       $contreservas++;
       
@@ -100,7 +115,7 @@ $rango2=intval(strtotime($fechafin));
                   <div class="table-responsive-sm">
                      <table class="table table-striped table-bordered nowrap table1" style="width:100%">
                         <thead>
-                           <tr class="table-danger">
+                           <tr class="">
                               <th>View</th>
                               <th>Date</th>
                               <th>Name</th>
@@ -114,7 +129,14 @@ $rango2=intval(strtotime($fechafin));
                         <tbody>
                             <?= $tablareresevas ?> 
                         </tbody>
+                        
+                        
+                        
                      </table>
+                     
+                  </div>
+                  <div class="price_table_bottom">
+                     <div class="center"><a class="main_bt" href="">Make Payment</a></div>
                   </div>
                </div>
             </div>

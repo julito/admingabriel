@@ -31,8 +31,9 @@ $rango2=intval(strtotime($fechafin));
       $fechar=intval(strtotime(substr($item->hecho, 0, 10)));
       if(!($fechar>=$rango1 && $fechar<=$rango2) )
       continue;
-      $tablatravel.= '<tr>
-      <td><i class="flaticon-download text-danger"></i></td>
+      if($item->estado == 0){
+         $tablatravel.= '<tr>
+      <td class="bg-danger"><i class="flaticon-download text-white"></i></td>
       <td>' . substr($item->hecho, 0, 10) . '</td>
       <td>' . $item->nombre . '</td>
       <td>' . $item->servicio . '</td>
@@ -42,10 +43,23 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->total . '</td>
       <td>' . $item->estado . '</td>
       <td class="text-center"><i class="fa fa-trash text-danger"></i></td>
-      
-      
       </tr>';
-      $conttransporte++;
+      }else{
+         $tablatravel.= '<tr>
+         <td><i class="flaticon-download text-danger"></i></td>
+         <td>' . substr($item->hecho, 0, 10) . '</td>
+         <td>' . $item->nombre . '</td>
+         <td>' . $item->servicio . '</td>
+         <td>' . $item->origen . '</td>
+         <td>' . $item->destino . '</td>
+         <td>' . $item->personas . '</td>
+         <td>' . $item->total . '</td>
+         <td>' . $item->estado . '</td>
+         <td class="text-center"><i class="fa fa-trash text-danger"></i></td>
+         </tr>';
+         $conttransporte++;
+      }
+
       /*$montos2+=floatval($item->total);
       $porcentaje2+=floatval($item->total)*0.10;
       if($item->estado==0){
@@ -118,6 +132,9 @@ $rango2=intval(strtotime($fechafin));
                             <?= $tablatravel ?> 
                         </tbody>
                      </table>
+                  </div>
+                  <div class="price_table_bottom">
+                     <div class="center"><a class="main_bt" href="">Make Payment</a></div>
                   </div>
                </div>
             </div>
