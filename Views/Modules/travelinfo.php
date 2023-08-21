@@ -40,6 +40,10 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->destino . '</td>
       <td>' . $item->personas . '</td>
       <td>' . $item->total . '</td>
+      <td>' . $item->estado . '</td>
+      <td class="text-center"><i class="fa fa-trash text-danger"></i></td>
+      
+      
       </tr>';
       $conttransporte++;
       /*$montos2+=floatval($item->total);
@@ -106,6 +110,8 @@ $rango2=intval(strtotime($fechafin));
                               <th>Destination</th>
                               <th>Passenger</th>
                               <th>Amount</th>
+                              <th>Sate</th>
+                              <th>Actions</th>
                            </tr>
                         </thead>
                         <tbody>

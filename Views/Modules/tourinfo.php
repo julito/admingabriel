@@ -39,6 +39,9 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->reservaciones_name . '</td>
       <td>' . $item->reservaciones_monto . '</td>
       <td>' . $item->reservaciones_detalle . '</td>
+      <td>' . $item->estado . '</td>
+      <td class="text-center"><i class="fa fa-trash text-danger"></i></td>
+      
       </tr>';
 
       $contreservas++;
@@ -104,7 +107,8 @@ $rango2=intval(strtotime($fechafin));
                               <th>Tour</th>
                               <th>Amount</th>
                               <th>Details</th>
-
+                              <th>Sate</th>
+                              <th>Actions</th>
                            </tr>
                         </thead>
                         <tbody>

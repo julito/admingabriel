@@ -28,27 +28,27 @@ class DatosReservasM{
 
 
     static public function mdlCargarReservas(){
-        $data = DatosReservasM::CURLs('http://www.conciergehotline.net/api/reservaciones?select=*&Columna=reservaciones_cupon&buscar=GABRIEL');
+        $data = DatosReservasM::CURLs('http://www.conciergehotline.net/api/reservaciones?select=*&Columna=reservaciones_cupon&buscar='.$_SESSION["HOTEL"]);
         return $data;
     }
 
 	static public function mdlCargarReservasTravel(){
-        $data = DatosReservasM::CURLs('http://travelvipmiami.com/api/reservaciones?select=*&Columna=observacion&buscar=GABRIEL');
+        $data = DatosReservasM::CURLs('http://travelvipmiami.com/api/reservaciones?select=*&Columna=observacion&buscar='.$_SESSION["HOTEL"]);
         return $data;
     }
 
 	static public function mdlCargarReservasAmenities(){
-		$data = DatosReservasM::CURLs('http://hotelroomdecoration.com/api/reservaciones?select=*&Columna=reservaciones_cupon&buscar=GABRIEL');
+		$data = DatosReservasM::CURLs('http://hotelroomdecoration.com/api/reservaciones?select=*&Columna=reservaciones_cupon&buscar='.$_SESSION["HOTEL"]);
 		return $data;
 	}
 
 	static public function mdlCargarReservasEstado(){
-		$data = DatosReservasM::CURLs('http://hotelroomdecoration.com/api/reservaciones?select=*&Columna=reservaciones_cupon&buscar=GABRIEL');
+		$data = DatosReservasM::CURLs('http://hotelroomdecoration.com/api/reservaciones?select=*&Columna=reservaciones_cupon&buscar='.$_SESSION["HOTEL"]);
 		return $data;
 	}
 
 	static public function mdlCargarReservasMontos(){
-		$data = DatosReservasM::CURLs('http://hotelroomdecoration.com/api/reservaciones?select=*&Columna=reservaciones_cupon&buscar=GABRIEL');
+		$data = DatosReservasM::CURLs('http://hotelroomdecoration.com/api/reservaciones?select=*&Columna=reservaciones_cupon&buscar='.$_SESSION["HOTEL"]);
 		return $data;
 	}
 }

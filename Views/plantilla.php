@@ -67,11 +67,14 @@
                 
                </div>
                <div class="sidebar_blog_2">
-                  <h4>Reservations</h4>
+                  <a href="home"><h4>Reservations</h4></a>
                   <ul class="list-unstyled components">
                      <li class="active">
                         <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Reports</span></a>
                         <ul class="collapse list-unstyled" id="dashboard">
+                           <li>
+                              <a href="home">> <span>Home</span></a>
+                           </li>
                            <li>
                               <a href="tourinfo">> <span>Tours</span></a>
                            </li>
