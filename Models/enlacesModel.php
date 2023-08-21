@@ -4,7 +4,7 @@ class EnlacesModels{
 
 	public static function enlaces($enlaces){
 
-	     if(  $enlaces == "home" || $enlaces == "tourinfo"){
+	     if(  $enlaces == "home" || $enlaces == "tourinfo" || $enlaces == "travelinfo" || $enlaces == "amenitiesinfo"){
 
 			$module = "Views/Modules/".$enlaces.".php";
 		}	

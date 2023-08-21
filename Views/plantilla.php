@@ -73,13 +73,13 @@
                         <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Reports</span></a>
                         <ul class="collapse list-unstyled" id="dashboard">
                            <li>
-                              <a href="tablatour">> <span>Tours</span></a>
+                              <a href="tourinfo">> <span>Tours</span></a>
                            </li>
                            <li>
-                              <a href="tablatravel">> <span>Travels</span></a>
+                              <a href="travelinfo">> <span>Travels</span></a>
                            </li>
                            <li>
-                              <a href="tablaamenities">> <span>Amenities</span></a>
+                              <a href="amenitiesinfo">> <span>Amenities</span></a>
                            </li>
                         </ul>
                      </li>

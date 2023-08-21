@@ -1,4 +1,3 @@
-
 <?php 
  $fechaActual = new DateTime();
 if(isset($_POST['rdate']))
@@ -17,22 +16,20 @@ else
 $rango1=intval(strtotime($fechainicio));
 $rango2=intval(strtotime($fechafin)); 
    
-
    $reservas = new DatosReservasC();
-   $datos = $reservas->ctrCargarReservas();
-   $tablareresevas='';
-   $contreservas=0;
-   /*$montos1=0;
-   $porcentaje1=0;
-   $porcentajeacumulado=0;
-   $reservaspendientes=0;
-   $reservaspagadas=0;*/
-
+   $datos = $reservas->ctrCargarReservasAmenities();
+   $tablaamenities='';
+   $contamenities=0;
+   /*$montos3=0;
+   $porcentaje3=0;
+   $porcentajeacumulado3=0;
+   $reservaspendientes3=0;
+   $reservaspagadas3=0;*/
    foreach ($datos as $item) {
       $fechar=intval(strtotime(substr($item->hecho, 0, 10)));
       if(!($fechar>=$rango1 && $fechar<=$rango2) )
       continue;
-      $tablareresevas.= '<tr>
+      $tablaamenities.= '<tr>
       <td><i class="flaticon-download text-danger"></i></td>
       <td>' . substr($item->hecho, 0, 10) . '</td>
       <td>' . $item->nombre . '</td>
@@ -40,18 +37,17 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->reservaciones_monto . '</td>
       <td>' . $item->reservaciones_detalle . '</td>
       </tr>';
-
-      $contreservas++;
       
-      /*$montos1+= floatval($item->reservaciones_monto) ;
-      $porcentaje1+=floatval($item->reservaciones_monto)*0.10;
-      if($item->estado==0)
-      {
-         $porcentajeacumulado+=floatval($item->reservaciones_monto)*0.10;
-         $reservaspendientes++;
+   $contamenities++;
+   /*$montos3+=floatval($item->reservaciones_monto);
+      $porcentaje3+=floatval($item->reservaciones_monto)*0.10;
+      if($item->estado==0){
+         $porcentajeacumulado3+=floatval($item->reservaciones_monto)*0.10;
+         $reservaspendientes3++;
       }
       else
-      $reservaspagadas+=floatval($item->reservaciones_monto)*0.10;*/
+      $reservaspagadas3+=floatval($item->reservaciones_monto)*0.10;*/
+
    }
 ?>
 <div class="midde_cont">
@@ -81,34 +77,35 @@ $rango2=intval(strtotime($fechafin));
       </div>
    </div>
 </div>
+                  
+
+
 <div class="midde_cont">
    <div class="container-fluid">
       <div class="row column_title">
-
          <!-- MOSTAR DATOS EN TABLA -->
          <div class="col-md-12">
             <div class="white_shd full margin_bottom_30">
                <div class="full graph_head">
                   <div class="heading1 margin_0">
-                     <h2>TOURS RESERVATIONS</h2>
+                     <h2>AMENITIES</h2>
                   </div> 
                </div>
                <div class="table_section padding_infor_info">
                   <div class="table-responsive-sm">
-                     <table class="table table-striped table-bordered nowrap table1" style="width:100%">
+                     <table  class="table table-striped table-bordered nowrap table1" style="width:100%">
                         <thead>
                            <tr class="table-danger">
                               <th>View</th>
                               <th>Date</th>
                               <th>Name</th>
-                              <th>Tour</th>
+                              <th>Package</th>
                               <th>Amount</th>
                               <th>Details</th>
-
                            </tr>
                         </thead>
                         <tbody>
-                            <?= $tablareresevas ?> 
+                          <?= $tablaamenities  ?> 
                         </tbody>
                      </table>
                   </div>
@@ -118,14 +115,16 @@ $rango2=intval(strtotime($fechafin));
       </div>
    </div>
 
-
+<!-- footer -->
+<div class="container-fluid">
+   <div class="footer">
+      <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
+   </div>
+</div>
 </div>
 
 <script>
 $(document).ready(()=>{
-
-
-
    new DataTable('.table1', {
     responsive: {
         details: {
@@ -141,11 +140,5 @@ $(document).ready(()=>{
         }
     }
 });
-
-
-
-
 })
-
-
 </script>
