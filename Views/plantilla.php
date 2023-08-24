@@ -92,7 +92,7 @@
                               <a href="perfil">> <span>Profile</span></a>
                            </li>
                            <li>
-                           <a href="salir">> <span>Log Out</span></a>
+                           <a href="logout">> <span>Log Out</span></a>
                            </li>
                         </ul>
                      
@@ -116,7 +116,7 @@
                                     <div class="dropdown-menu">
                                        <a class="dropdown-item" href="perfil">Profile</a>
                                        
-                                       <a class="dropdown-item" href="salir"><span>log Out</span> <i class="fa fa-sign-out"></i></a>
+                                       <a class="dropdown-item" href="logout"><span>log Out</span> <i class="fa fa-sign-out"></i></a>
                                     </div>
                                  </li>
                               </ul>
