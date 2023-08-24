@@ -210,7 +210,7 @@ $rango2=intval(strtotime($fechafin));
                                                 </div>
                                              </div>
                                              <div class="price_table_bottom">
-                                                <form action="tourinfo" class="center" method="$_POST">
+                                                <form action="tourinfo" class="center" method="POST">
                                                  
                                                    <input value="<?= $fechainicio ?>" type="hidden" name="finicio" id="finicio">
                                                    <input value="<?= $fechafin ?>" type="hidden" name="ffin" id="ffin">
