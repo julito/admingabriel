@@ -3,7 +3,8 @@ class EnlacesController{
 
 public function enlaces(){
 
-
+if(isset($_SESSION['autenticado']))
+{
     if(isset($_GET['action'])){
         try{
         $url=filter_input(INPUT_GET,'action',FILTER_SANITIZE_URL);
@@ -22,9 +23,17 @@ public function enlaces(){
 
     }
 
+
+
     $respuesta = EnlacesModels::enlaces($enlaces);
 
-    include $respuesta;
+   
+}
+
+    
+
+ include $respuesta;
+
 
 }
 
