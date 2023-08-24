@@ -6,6 +6,10 @@ if(isset($_POST['rdate']))
    $fechainicio=$_POST['rdate'];
    $fechafin=$_POST['rdate2'];
 }
+else if(isset($_POST['finicio'])){
+   $fechainicio=$_POST['finicio'];
+   $fechafin=$_POST['ffin'];
+}
 else
 {
    $fechainicio=new DateTime($fechaActual->format('Y-m-01'));
