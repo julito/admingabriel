@@ -2,6 +2,13 @@
 
 class PlantillaC{
     public function cargarPlantilla(){
-        include "Views/plantilla.php";
+        if(isset($_SESSION['autenticado']))
+        {
+            include "Views/plantilla.php";
+        }
+        else
+            include "Views/login.php";
+
+
     }
 }

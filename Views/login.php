@@ -58,94 +58,42 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    </head>
-   <body class="dashboard dashboard_1">
-      <div class="full_container">
-         <div class="inner_container">
-            <!-- Sidebar  -->
-            <nav id="sidebar">
-               
-               <div class="sidebar_blog_2">
-                  <a href="home"><h4>Reservations</h4></a>
-                  <div class="sidebar_blog_1">
-                        <a href="home"><h4><i class="fa fa-bank yellow_color mr-3"></i>>Home</h4></a>
-                  </div>
-                  <ul class="list-unstyled components">
-                     <li class="active">
-                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-list yellow_color"></i> <span>Reports</span></a>
-                        <ul class="collapse list-unstyled" id="dashboard">
-                           <li>
-                              <a href="tourinfo">> <span>Tours</span></a>
-                           </li>
-                           <li>
-                              <a href="travelinfo">> <span>Travels</span></a>
-                           </li>
-                           <li>
-                              <a href="amenitiesinfo">> <span>Amenities</span></a>
-                           </li>
-                        </ul>
-                     </li>
-                     
-                     <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cogs yellow_color"></i> <span>Settings</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                           <li>
-                              <a href="perfil">> <span>Profile</span></a>
-                           </li>
-                           <li>
-                           <a href="salir">> <span>Log Out</span></a>
-                           </li>
-                        </ul>
-                     
-               </div>
-            </nav>
-            <!-- end sidebar -->
-            <!-- right content -->
-            <div id="content">
-               <!-- topbar -->
-               <div class="topbar">
-                  <nav class="navbar navbar-expand-lg navbar-light">
-                     <div class="full">
-                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                        
-                        <div class="right_topbar">
-                           <div class="icon_info">
-                              
-                              <ul class="user_profile_dd">
-                                 <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="" alt="" /><span class="name_user">User</span></a>
-                                    <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="perfil">Profile</a>
-                                       
-                                       <a class="dropdown-item" href="salir"><span>log Out</span> <i class="fa fa-sign-out"></i></a>
-                                    </div>
-                                 </li>
-                              </ul>
-                           </div>
-                        </div>
+   <body class="inner_page login">
+   <div class="full_container">
+         <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="login_section">
+                  <div class="logo_login">
+                     <div class="center">
+                        <img width="210" src="https://conciergehotline.net/images/recursos/logo/logo_concierge.svg" alt="#" />
                      </div>
-                  </nav>
+                  </div>
+                  <div class="login_form">
+                     <form method="POST">
+                        <fieldset>
+                           <div class="field">
+                              <label class="label_field">Email Address</label>
+                              <input type="email" name="email" placeholder="E-mail" required />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Password</label>
+                              <input type="password" name="password" placeholder="Password" required />
+                           </div>
+                          
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt">Sing In</button>
+                           </div>
+                        </fieldset>
+                        <?php
+                           DatosReservasC::ctrLogin();
+                        ?>
+                     </form>
+                  </div>
                </div>
-               <!-- end topbar -->
-               <!-- dashboard inner -->
-
-
-
-                  <?php
-                  $enlace= new EnlacesController(); 
-                  $enlace->enlaces();
-                  ?>
-
-
-             
-
-
-               <!-- end dashboard inner -->
             </div>
          </div>
-         
       </div>
-
-                  
 
       <!-- wow animation -->
       <script src="<?= $rutaAssets ?>js/animate.js"></script>
