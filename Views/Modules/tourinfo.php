@@ -107,11 +107,31 @@ $rango2=intval(strtotime($fechafin));
       <div class="row column_title">
 
          <!-- MOSTAR DATOS EN TABLA -->
+         
          <div class="col-md-12">
+         <div class="row column1 social_media_section">
+                        <div class="col-md-6 col-lg-3">
+                           <div class="full socile_icons fb margin_bottom_30">
+                              <div class="social_icon">
+                                 <i class="fa fa-money"></i>
+                              </div>
+                              <div class="social_cont">
+                                 <ul>
+                                    <li>
+                                       <span><strong>Total: </strong></span>
+                                    </li>
+                                    <li>
+                                       <span><?=$contarmontos;?></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
             <div class="white_shd full margin_bottom_30">
                <div class="full graph_head">
                   <div class="heading1 margin_0">
-                     <h2>TOURS RESERVATIONS</h2>
+                     <h2>TOURS RESERVATIONS</h2><br>
                   </div> 
                </div>
                <div class="table_section padding_infor_info">
