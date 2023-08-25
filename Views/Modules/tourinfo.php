@@ -25,11 +25,11 @@ $rango2=intval(strtotime($fechafin));
    $datos = $reservas->ctrCargarReservas();
    $tablareresevas='';
    $contreservas=0;
-   /*$montos1=0;
+   $montos1=0;
    $porcentaje1=0;
    $porcentajeacumulado=0;
    $reservaspendientes=0;
-   $reservaspagadas=0;*/
+   $reservaspagadas=0;
 
    foreach ($datos as $item) {
       $fechar=intval(strtotime(substr($item->hecho, 0, 10)));
@@ -64,7 +64,7 @@ $rango2=intval(strtotime($fechafin));
 
       $contreservas++;
       
-      /*$montos1+= floatval($item->reservaciones_monto) ;
+      $montos1+= floatval($item->reservaciones_monto) ;
       $porcentaje1+=floatval($item->reservaciones_monto)*0.10;
       if($item->estado==0)
       {
@@ -72,7 +72,7 @@ $rango2=intval(strtotime($fechafin));
          $reservaspendientes++;
       }
       else
-      $reservaspagadas+=floatval($item->reservaciones_monto)*0.10;*/
+      $reservaspagadas+=floatval($item->reservaciones_monto)*0.10;
    }
 ?>
 <div class="midde_cont">
@@ -113,15 +113,68 @@ $rango2=intval(strtotime($fechafin));
                         <div class="col-md-6 col-lg-3">
                            <div class="full socile_icons fb margin_bottom_30">
                               <div class="social_icon">
-                                 <i class="fa fa-money"></i>
+                                 <i class="fa fa-group"></i>
                               </div>
                               <div class="social_cont">
                                  <ul>
                                     <li>
-                                       <span><strong>Total: </strong></span>
+                                       <span><strong>Pending</strong></span>
+                                       <span>$Total:</span>
                                     </li>
                                     <li>
-                                       <span><?=$contarmontos;?></span>
+                                       <span><strong><?=$reservaspendientes ?></strong></span>
+                                       <span>$ <?=$montos1 ?></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                           <div class="full socile_icons tw margin_bottom_30">
+                              <div class="social_icon">
+                                 <i class="fa fa-sort-amount-desc"></i>
+                              </div>
+                              <div class="social_cont">
+                                 <ul>
+                                    <li>
+                                       <span><strong>Hotel %</strong></span>
+                                    </li>
+                                    <li>
+                                       <span><strong>$ <?=$porcentaje1 ?></strong></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                           <div class="full socile_icons linked margin_bottom_30">
+                              <div class="social_icon">
+                                 <i class="fa fa-check"></i>
+                              </div>
+                              <div class="social_cont">
+                                 <ul>
+                                    <li>
+                                       <span><strong>Paid</strong></span>
+                                    </li>
+                                    <li>
+                                       <span><strong>$ <?=$reservaspagadas ?></strong></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                           <div class="full socile_icons google_p margin_bottom_30">
+                              <div class="social_icon">
+                                 <i class="fa fa-line-chart"></i>
+                              </div>
+                              <div class="social_cont">
+                                 <ul>
+                                    <li>
+                                       <span><strong>Balance</strong></span>
+                                    </li>
+                                    <li>
+                                       <span><strong>$ <?=$porcentajeacumulado?></strong></span>
                                     </li>
                                  </ul>
                               </div>
