@@ -76,7 +76,28 @@ $rango2=intval(strtotime($fechafin));
          <div class="col-md-12">
             <div class="page_title">
                <h1>DATE RANGE SEARCH</h1>
-                     <form class="" method="POST">
+               <form class="booking-form" method="POST">
+							<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<input value="<?= $fechainicio ?>" class="form-control" type="date" required>
+									<span class="form-label">Check In</span>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<input value="<?= $fechafin ?>" class="form-control" type="date" required>
+									<span class="form-label">Check out</span>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-btn">
+									<button class="main_bt" type="submit">GO!</button>
+								</div>
+							</div>
+                     </div>
+						</form>
+                     <!--<form class="" method="POST">
                         <div class="form-row align-items-center">
                            <div class="col-sm-3 my-1">
                               <input value="<?= $fechainicio ?>" type="date" class="form-control" id="rdate" name="rdate" required>
@@ -91,7 +112,7 @@ $rango2=intval(strtotime($fechafin));
                         </div>
                         </div>
                         
-                     </form>
+                     </form>-->
             </div>
          </div>
       </div>
