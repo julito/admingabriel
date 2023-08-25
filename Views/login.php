@@ -86,7 +86,7 @@
                            </div>
                         </fieldset>
                         <?php
-                           DatosReservasC::ctrLogin();
+                           loginController::Login();
                         ?>
                      </form>
                   </div>

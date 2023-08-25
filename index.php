@@ -16,10 +16,13 @@ require_once "Controllers/plantillaController.php";
 require_once "Controllers/reservasController.php";
 require_once "Controllers/enlacesController.php";
 require_once "Controllers/sessionController.php";
+require_once "Controllers/loginController.php";
+require_once "Controllers/funcionesController.php";
 
 require_once "Models/rutas.php";
 require_once "Models/reservasModel.php";
 require_once "Models/enlacesModel.php";
+require_once "Models/loginModel.php";
 
 $plantilla = new PlantillaC();
 $plantilla -> cargarPlantilla();
