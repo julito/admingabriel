@@ -29,6 +29,7 @@ class DatosReservasC{
         if($_POST['email']=="correo@correo.com" && $_POST['password']=="123")
         {
               $_SESSION['autenticado']=true;
+              
              echo "
              <script>
              let timerInterval
