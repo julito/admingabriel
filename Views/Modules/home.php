@@ -146,11 +146,11 @@ $rango2=intval(strtotime($fechafin));
 						
                <!-- -->
 
-               <div id="accordion">
-    <div class="card green_bg">
+<div id="accordion">
+    <div class="card green_bg text-center">
       <div class="card-header">
         <a class="card-link" data-toggle="collapse" href="#collapseOne">
-        <h1 class="text-white"> DATE RANGE SEARCH <i class="fa fa-search"> </i></h1>
+        <h1 class="text-white my-3"><i class="fa fa-calendar"> DATE RANGE SEARCH <span><b><i><?= $fechainicio ?></i></b> / <b><i><?= $fechafin ?></i></b></span > </i></h1>
         </a>
       </div>
       <div id="collapseOne" class="collapse hide" data-parent="#accordion">
@@ -179,9 +179,9 @@ $rango2=intval(strtotime($fechafin));
                </div>
       </div>
     </div>
+</div>
+<!-- -->
 
-               <!-- -->
-            </div>
          </div>
       </div>
 
