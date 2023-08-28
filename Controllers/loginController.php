@@ -3,10 +3,10 @@
 class loginController{
     public static function Login(){
 
-        sessionController::set('autenticado',true);
-        sessionController::set('rol','admin');
-        return;
-       
+       // sessionController::set('autenticado',true);
+       // sessionController::set('rol','admin');
+       // return;
+       if(funcionesController::getPost('email'))
         {
          if(loginModel::login())
          {
