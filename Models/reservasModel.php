@@ -58,9 +58,25 @@ class DatosReservasM{
 		return $data;
 	}
 
-	static public function mdlLogin(){
-	//	$data = DatosReservasM::CURLs();
-		//return $data;
+	static public function eliminarReserva($id,$op){
+	switch($op)
+	{
+		case 1:
+			$columnaid='reservaciones_id';
+			$token=sessionController::get('tokenconcierge');
+			break;
+		case 2:
+			$columnaid='id';
+			$token=sessionController::get('tokentravel');
+			break;
+		case 1:
+			$columnaid='reservaciones_id';
+			$token=sessionController::get('tokenamenities');
+			break;
+
+	}
+	$datos = "nameId={$columnaid}&=id={$id}&token={$token}";
+	DatosReservasM::CURLs(API_CONCIERGE . 'users?login=true', $datos, 'POST');
 	}
 
 }
