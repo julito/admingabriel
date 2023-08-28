@@ -232,12 +232,14 @@ $rango2=intval(strtotime($fechafin));
                                                 </div>
                                              </div>
                                              <div class="price_table_bottom">
+                                             <?php if(sessionController::ValidateUser('admin')){?>
                                                 <form action="tourinfo" class="center" method="POST">
                                                  
                                                    <input value="<?= $fechainicio ?>" type="hidden" name="finicio" id="finicio">
                                                    <input value="<?= $fechafin ?>" type="hidden" name="ffin" id="ffin">
                                                    <input type="submit" class="main_bt" value="View Details"> 
                                                 </form>
+                                                <?php }?>
                                              </div>
                                           </div>
                                        </div>
@@ -334,12 +336,14 @@ $rango2=intval(strtotime($fechafin));
                                     </div>
                                              </div>
                                              <div class="price_table_bottom">
+                                             <?php if(sessionController::ValidateUser('admin')){?>
                                                 <form action="tourinfo" class="center" method="POST">
                                                  
                                                    <input value="<?= $fechainicio ?>" type="hidden" name="finicio" id="finicio">
                                                    <input value="<?= $fechafin ?>" type="hidden" name="ffin" id="ffin">
                                                    <input type="submit" class="main_bt" value="View Details"> 
                                                 </form>
+                                                <?php }?>
                                              </div>
                                           </div>
                                        </div>

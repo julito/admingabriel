@@ -2,6 +2,6 @@
 session_destroy();
 echo '
 <script>
-window.location = "home";
+window.location = "login";
 </script>
 ';

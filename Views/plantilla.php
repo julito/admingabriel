@@ -75,6 +75,7 @@
                         <a href="home"><h4><i class="fa fa-bank yellow_color mr-3"></i>>Home</h4></a>
                   </div>
                   <ul class="list-unstyled components">
+                  <?php if(sessionController::ValidateUser('admin')){?>
                      <li class="active">
                         <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-list yellow_color"></i> <span>Reports</span></a>
                         <ul class="collapse list-unstyled" id="dashboard">
@@ -89,19 +90,24 @@
                            </li>
                         </ul>
                      </li>
+                     <?php }?>
                      
                      <li class="active">
                         <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cogs yellow_color"></i> <span>Settings</span></a>
                         <ul class="collapse list-unstyled" id="additional_page">
+                        <?php if(sessionController::ValidateUser('admin')){?>
                            <li>
                               <a href="perfil">> <span>Profile</span></a>
                            </li>
+                           <?php }?>
                            <li>
                            <a href="logout">> <span>Log Out</span></a>
                            </li>
                         </ul>
-                     
-               </div>
+                        </ul>
+               
+               
+                     </div>
             </nav>
             <!-- end sidebar -->
             <!-- right content -->
