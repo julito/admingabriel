@@ -36,19 +36,23 @@ class loginModel
         if ($user && $pass) {
             $data = "email_user={$user}&password_user={$pass}";
             $data = loginModel::CURLs(API_CONCIERGE . 'users?login=true', $data, 'POST');
-            if ($data->status = 400) {
+            if ($data->status == 400) {
                 echo '<br>
                 <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                    <strong>' . $data->results . '!</strong>
+                    <strong>' . var_dump($data->results) . '!</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 ';
+                return false;
             }
             else
             {
                 $item=$data->results;
+               // var_dump($item);
+                sessionController::set('rol',$item[0]->rol_user);
+                sessionController::set('autenticado',true);
                 
             }
         } else

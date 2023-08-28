@@ -9,7 +9,7 @@ define('API_CONCIERGE','http://www.conciergehotline.net/api/');
 define('API_TRAVEL','http://travelvipmiami.com/api/');
 define('API_AMENITIES','http://hotelroomdecoration.com/api/');
 
-define('RUTAASSETS','http://192.168.1.105/admingabriel/views/assets/');
+define('RUTAASSETS','http://localhost/admingabriel/views/assets/');
 
 
 require_once "Controllers/plantillaController.php";
