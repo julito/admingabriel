@@ -156,7 +156,7 @@
          
       </div>
 
-                  
+          <?php var_dump($_SESSION);  ?>     
 
       <!-- wow animation -->
       <script src="<?= $rutaAssets ?>js/animate.js"></script>

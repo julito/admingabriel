@@ -29,13 +29,22 @@ class loginModel
         return $data;
     }
 
-    static public function login()
+    static public function login($userh=false,$passh=false)
     {
+        if($userh && $passh)
+        {
+            $user = $userh;
+            $pass = $passh;  
+        }
+        else
+        {
         $user = funcionesController::getPost('email');
-        $pass = funcionesController::getPost('password');
+        $pass = funcionesController::getPost('password');  
+        }
+        
         if ($user && $pass) {
-            $data = "email_user={$user}&password_user={$pass}";
-            $data = loginModel::CURLs(API_CONCIERGE . 'users?login=true', $data, 'POST');
+            $datos = "email_user={$user}&password_user={$pass}";
+            $data = loginModel::CURLs(API_CONCIERGE . 'users?login=true', $datos, 'POST');
             if ($data->status == 400) {
                 echo '<br>
                 <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
@@ -53,7 +62,18 @@ class loginModel
                // var_dump($item);
                 sessionController::set('rol',$item[0]->rol_user);
                 sessionController::set('autenticado',true);
-                
+                if($item[0]->rol_user=='admin')
+                {
+                    sessionController::set('tokenconcierge',$item[0]->token_user);
+                    $data1 = loginModel::CURLs(API_TRAVEL . 'users?login=true', $datos, 'POST');
+                    $item1=$data1->results;
+                    sessionController::set('tokentravel',$item1[0]->token_user);
+                    $data2 = loginModel::CURLs(API_AMENITIES . 'users?login=true', $datos, 'POST');
+                    $item2=$data2->results;
+                    sessionController::set('tokenamenities',$item2[0]->token_user);
+
+                }
+                return true;
             }
         } else
             return false;
