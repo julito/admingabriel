@@ -127,7 +127,6 @@ $rango2=intval(strtotime($fechafin));
       <div class="row column_title">
          <div class="col-md-12">
             <div class="page_title">
-               <h1>DATE RANGE SEARCH</h1>
                      <!--<form class="" method="POST">
                         <div class="form-row align-items-center">
                            <div class="col-sm-3 my-1">
@@ -144,7 +143,19 @@ $rango2=intval(strtotime($fechafin));
                         </div>
                         
                      </form>-->
-						<form class="booking-form" method="POST">
+						
+               <!-- -->
+
+               <div id="accordion">
+    <div class="card green_bg">
+      <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+        <h1 class="text-white"> DATE RANGE SEARCH <i class="fa fa-search"> </i></h1>
+        </a>
+      </div>
+      <div id="collapseOne" class="collapse hide" data-parent="#accordion">
+        <div class="card-body">
+        <form class="booking-form" method="POST">
 							<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
@@ -165,6 +176,10 @@ $rango2=intval(strtotime($fechafin));
 							</div>
                      </div>
 						</form>
+               </div>
+      </div>
+    </div>
+
                <!-- -->
             </div>
          </div>
