@@ -53,6 +53,11 @@ class DatosReservasM{
 		return $data;
 	}
 
+	static public function mdlBorrarReservaciones(){
+		$data = DatosReservasM::CURLs('http://hotelroomdecoration.com/api/reservaciones?select=*&Columna=reservaciones_cupon&buscar='.$_SESSION["HOTEL"]);
+		return $data;
+	}
+
 	static public function mdlLogin(){
 	//	$data = DatosReservasM::CURLs();
 		//return $data;
