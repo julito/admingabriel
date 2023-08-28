@@ -2,7 +2,7 @@
 
 class DatosReservasM{
 
-    static public function CURLs($url,$data='',$metodo='GET'){
+    static public function CURLs($url,$metodo='GET',$data=''){
         $curl = curl_init();
 
 		curl_setopt_array($curl, array(
@@ -64,19 +64,28 @@ class DatosReservasM{
 		case 1:
 			$columnaid='reservaciones_id';
 			$token=sessionController::get('tokenconcierge');
+			$API=API_CONCIERGE;
 			break;
 		case 2:
 			$columnaid='id';
 			$token=sessionController::get('tokentravel');
+			$API=API_TRAVEL;
 			break;
 		case 1:
 			$columnaid='reservaciones_id';
 			$token=sessionController::get('tokenamenities');
+			$API=API_AMENITIES;
 			break;
 
 	}
-	$datos = "nameId={$columnaid}&=id={$id}&token={$token}";
-	DatosReservasM::CURLs(API_CONCIERGE . 'users?login=true', $datos, 'POST');
+	
+	$data=DatosReservasM::CURLs( $API."reservaciones?nameId={$columnaid}&id={$id}&token={$token}",  'DELETE');
+	
+	if($data=="The process was successful")
+		return true;
+	else
+		return false;
+
 	}
 
 }
