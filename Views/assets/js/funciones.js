@@ -43,7 +43,47 @@ $(document).ready(function(){
     })
     
 
+    $(document).on("click",".btnEliminarTravel",function(){
+      var idRes = $(this).attr("idRes");
+     
 
+
+      Swal.fire({
+          title: 'Do you want to delete item?',
+          
+          showCancelButton: true,
+          confirmButtonText: 'Save',
+          
+        }).then((result) => {
+          
+          if (result.isConfirmed) {
+              var url=$("#rutaurl").val()+'Models/reservasModel.php';
+              var token=$("#tokentravel").val();
+
+              $.ajax({
+                  type: "POST",
+                  url: url,
+                  data: {'accion':'delete','id':idRes,'api':2,'token':token},
+                  beforeSend: function() {
+              
+                  },
+                  success: function(respuesta) {
+                           console.log(respuesta)                ;
+                      if(respuesta==true)
+                      {
+                          Swal.fire('Deleted!', '', 'success')
+                          location.reload(false);
+                      }
+                      else
+                      Swal.fire('Error!', '', 'error')
+                  }
+                });
+
+
+          } 
+        })
+     
+  })
 
 
     $(document).on("click",".btnEliminaramenities",function(){
