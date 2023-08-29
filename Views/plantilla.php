@@ -64,6 +64,13 @@
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    </head>
    <body class="dashboard dashboard_1">
+      
+      <input type="hidden" value="<?= $_SESSION["HOTEL"] ?>" id="hotelorigen" >
+      <input type="hidden" value="<?= RUTAURL ?>" id="rutaurl" >
+      <input type="hidden" value="<?= sessionController::get('tokenconcierge') ?>" id="tokenconcierge" >
+      <input type="hidden" value="<?= sessionController::get('tokentravel') ?>" id="tokentravel" >
+      <input type="hidden" value="<?= sessionController::get('tokenamenities') ?>" id="tokenamenities" >
+
       <div class="full_container">
          <div class="inner_container">
             <!-- Sidebar  -->
@@ -155,8 +162,7 @@
          </div>
          
       </div>
-
-          <?php var_dump($_SESSION);  ?>     
+  
 
       <!-- wow animation -->
       <script src="<?= $rutaAssets ?>js/animate.js"></script>

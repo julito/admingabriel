@@ -5,14 +5,72 @@ $(document).on("click",".btnEliminarReserva",function(){
 })
 
 $(document).ready(function(){
+
+
+$(document).ready(function(){
+  
+    $(document).on("click",".btnEliminarReserva",function(){
+        var idRes = $(this).attr("idRes");
+       
+
+
+        Swal.fire({
+            title: 'Do you want to delete item?',
+            
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+            
+          }).then((result) => {
+            
+            if (result.isConfirmed) {
+                var url=$("#rutaurl").val()+'Models/reservasModel.php';
+                var token=$("#tokenconcierge").val();
+
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {'accion':'delete','id':idRes,'api':1,'token':token},
+                    beforeSend: function() {
+                
+                    },
+                    success: function(respuesta) {
+                             console.log(respuesta)                ;
+                        if(respuesta==true)
+                        {
+                            Swal.fire('Deleted!', '', 'success')
+                            location.reload(false);
+                        }
+                        else
+                        Swal.fire('Error!', '', 'error')
+                    }
+                  });
+
+
+
+              
+
+
+
+            } 
+          })
+
+
+       
+    })
+    
+
+
+
+
     $("#makereservasconcierge").on('click',function()
     {  
     var fecha1=$("#date1").val();
     var fecha2=$("#date2").val();
-    var url=`http://conciergehotline.net/api/reservaciones?select=reservaciones_id&between1=${fecha1}&between2=${fecha2}&filterTo=estado&inTo=0&Columna=hecho`;
-   // http://conciergehotline.net/api/reservaciones?select=reservaciones_id&between1=2023-08-01&between2=2023-08-31&filterTo=estado&inTo=0&Columna=hecho
-   // http://conciergehotline.net/api/reservaciones?select=reservaciones_id&between1=2023-08-13&between2=2023-08-16&filterTo=estado&inTo=0&Columna=hecho
-    console.log(url);
+    var hotel=$("#hotelorigen").val();
+    var url=`http://conciergehotline.net/api/reservaciones?select=*&between1=${fecha1}&between2=${fecha2}&filterTo=reservaciones_cupon&inTo=${hotel}&Columna=hecho`;
+  
+    
     $.ajax({
         type: "GET",
         url: url,
@@ -21,13 +79,14 @@ $(document).ready(function(){
     
         },
         success: function(respuesta) {
-          data = respuesta.results;
-          console.log(respuesta)
-          for(i=0;i<data.length;i++)
-          {
-
-          }
-          //console.log(data[i].reservaciones_id);
+          datos = respuesta.results;
+          console.table(datos)
+          datos.forEach(function(item) {
+            if (item.estado == 0) {
+              console.log(`ID: ${item.reservaciones_id}`);
+            }
+          });
+          
     
         }
       });

@@ -11,7 +11,9 @@ class Ruta{
 
 
 
-		return "http://192.168.1.103/admingabriel/";
+
+		return RUTAURL;
+
 
 
 	}
@@ -21,7 +23,9 @@ class Ruta{
 
 
 
-		return "http://192.168.1.103/admingabriel/Views/assets/";
+
+		return RUTAURL."Views/assets/";
+
 
 	}
 
