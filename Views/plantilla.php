@@ -47,7 +47,7 @@
 
 
       <!-- jQuery -->
-      <script src="<?= $rutaAssets ?>js/jquery.min.js"></script>
+      <script src="<?= $rutaAssets ?>js/jquery-3.3.1.min.js"></script>
       <script src="<?= $rutaAssets ?>js/popper.min.js"></script>
       <script src="<?= $rutaAssets ?>js/bootstrap.min.js"></script>
 
