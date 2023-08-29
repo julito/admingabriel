@@ -1,7 +1,4 @@
 $(document).ready(function(){
-
-
-$(document).ready(function(){
   
     $(document).on("click",".btnEliminarReserva",function(){
         var idRes = $(this).attr("idRes");
