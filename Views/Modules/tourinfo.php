@@ -92,13 +92,13 @@ $rango2=intval(strtotime($fechafin));
 							<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
-									<input value="<?= $fechainicio ?>" class="form-control" type="date" required>
+									<input id="date1" value="<?= $fechainicio ?>" class="form-control" type="date" required>
 									<span class="form-label">Check In</span>
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
-									<input value="<?= $fechafin ?>" class="form-control" type="date" required>
+									<input id="date2" value="<?= $fechafin ?>" class="form-control" type="date" required>
 									<span class="form-label">Check out</span>
 								</div>
 							</div>
@@ -228,7 +228,7 @@ $rango2=intval(strtotime($fechafin));
                      
                   </div>
                   <div class="price_table_bottom">
-                     <div class="center"><a class="main_bt" href="" onclick="pagarReservasConcierge()">Make Payment</a></div>
+                     <div class="center"><a class="main_bt" id="makereservasconcierge">Make Payment</a></div>
                   </div>
                </div>
             </div>

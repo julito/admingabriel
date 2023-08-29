@@ -47,7 +47,7 @@
 
 
       <!-- jQuery -->
-      <script src="<?= $rutaAssets ?>js/jquery.min.js"></script>
+      <script src="<?= $rutaAssets ?>js/jquery-3.3.1.min.js"></script>
       <script src="<?= $rutaAssets ?>js/popper.min.js"></script>
       <script src="<?= $rutaAssets ?>js/bootstrap.min.js"></script>
 
@@ -183,6 +183,7 @@
       <!-- custom js -->
       <script src="<?= $rutaAssets ?>js/custom.js"></script>
       <script src="<?= $rutaAssets ?>js/chart_custom_style1.js"></script>
+      <script src="<?= $rutaAssets ?>js/funciones.js"></script>
 
    </body>
 </html>
