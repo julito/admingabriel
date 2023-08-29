@@ -17,7 +17,6 @@ $(document).ready(function(){
                 var url=$("#rutaurl").val()+'Models/reservasModel.php';
                 var token=$("#tokenconcierge").val();
 
-
                 $.ajax({
                     type: "POST",
                     url: url,
@@ -38,15 +37,8 @@ $(document).ready(function(){
                   });
 
 
-
-              
-
-
-
             } 
           })
-
-
        
     })
     
@@ -71,10 +63,30 @@ $(document).ready(function(){
         },
         success: function(respuesta) {
           datos = respuesta.results;
-          console.table(datos)
+          
           datos.forEach(function(item) {
             if (item.estado == 0) {
-              console.log(`ID: ${item.reservaciones_id}`);
+            
+              var token=$("#tokenconcierge").val();
+
+
+             var puturl=`http://conciergehotline.net/api/reservaciones?id=${item.reservaciones_id}&nameId=reservaciones_id&token=${token}` ;
+
+              $.ajax({
+                type: "PUT",
+                url: puturl,
+                data: {'estado':1},
+                beforeSend: function() {
+            
+                },
+                success: function(respuesta) {
+                  console.log(respuesta);
+                  
+            
+                }
+              });
+
+
             }
           });
           
