@@ -1,9 +1,3 @@
-
-$(document).on("click",".btnEliminarReserva",function(){
-    var idRes = $(this).attr("idRes");
-   
-})
-
 $(document).ready(function(){
 
 
@@ -95,19 +89,3 @@ $(document).ready(function(){
     
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

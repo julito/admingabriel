@@ -23,7 +23,7 @@ class DatosReservasC{
         return DatosReservasM::mdlCargarReservasMontos();
     }
 
-    public function ctrBorrarReservaciones($id){
+    public function ctrBorrarReservaciones(){
         return DatosReservasM::mdlBorrarReservaciones();
     }
 
