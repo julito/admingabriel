@@ -183,6 +183,7 @@
       <!-- custom js -->
       <script src="<?= $rutaAssets ?>js/custom.js"></script>
       <script src="<?= $rutaAssets ?>js/chart_custom_style1.js"></script>
+      <script src="<?= $rutaAssets ?>js/funciones.js"></script>
 
    </body>
 </html>

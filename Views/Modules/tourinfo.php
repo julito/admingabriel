@@ -44,7 +44,7 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->reservaciones_monto . '</td>
       <td>' . $item->reservaciones_detalle . '</td>
       <td>' . $item->estado . '</td>
-      <td class="text-center"><button class="btn btn-danger btnEliminarReserva" onClick("'.$item->reservaciones_id.'")><i class="fa fa-trash text-white"></i> Delete</button></td>
+      <td class="text-center"><button class="btn btn-danger btnEliminarReserva" idRes="'.$item->reservaciones_id.'"><i class="fa fa-trash text-white"></i> Delete</button></td>
       </tr>';
       }else{
          //btnBorrarReserva="'. $item->reservaciones_id .'"
@@ -56,7 +56,7 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->reservaciones_monto . '</td>
       <td>' . $item->reservaciones_detalle . '</td>
       <td>' . $item->estado . '</td>
-      <td class="text-center"><button class="btn btn-danger btnEliminarReserva" onClick("'.$item->reservaciones_id.'")><i class="fa fa-trash text-white"></i> Delete</button></td>
+      <td class="text-center"><button class="btn btn-danger btnEliminarReserva" idRes="'.$item->reservaciones_id.'"><i class="fa fa-trash text-white"></i> Delete</button></td>
       </tr>';
       }
       
