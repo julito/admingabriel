@@ -46,7 +46,7 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->personas . '</td>
       <td>' . $item->total . '</td>
       <td>' . $item->estado . '</td>
-      <td class="text-center"><i class="fa fa-trash text-danger"></i></td>
+      <td class="text-center"><button class="btn btn-danger btnEliminarReserva" idRes="' . $item->id . '"><i class="fa fa-trash text-white"></i> Delete</button></td>
       </tr>';
       }else{
          $tablatravel.= '<tr>
@@ -59,7 +59,7 @@ $rango2=intval(strtotime($fechafin));
          <td>' . $item->personas . '</td>
          <td>' . $item->total . '</td>
          <td>' . $item->estado . '</td>
-         <td class="text-center"><i class="fa fa-trash text-danger"></i></td>
+         <td class="text-center"><button class="btn btn-danger btnEliminarReserva" idRes="' . $item->id . '"><i class="fa fa-trash text-white"></i> Delete</button></td>
          </tr>';
          $conttransporte++;
       }

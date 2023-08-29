@@ -91,7 +91,6 @@ static $API_AMENITIES2='http://hotelroomdecoration.com/api/';
 		return true;
 	else
 		return false;
-
 	}
 
 }

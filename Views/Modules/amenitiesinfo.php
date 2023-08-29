@@ -42,7 +42,7 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->reservaciones_monto . '</td>
       <td>' . $item->reservaciones_detalle . '</td>
       <td>' . $item->estado . '</td>
-      <td><i class="fa fa-trash text-danger"></i></td>
+      <td class="text-center"><button class="btn btn-danger btnEliminarReserva" idRes="' . $item->reservaciones_id . '"><i class="fa fa-trash text-white"></i> Delete</button></td>
       </tr>';
       }else{
       $tablaamenities.= '<tr>
@@ -53,7 +53,7 @@ $rango2=intval(strtotime($fechafin));
       <td>' . $item->reservaciones_monto . '</td>
       <td>' . $item->reservaciones_detalle . '</td>
       <td>' . $item->estado . '</td>
-      <td><i class="fa fa-trash text-danger"></i></td>
+      <td class="text-center"><button class="btn btn-danger btnEliminarReserva" idRes="' . $item->reservaciones_id . '"><i class="fa fa-trash text-white"></i> Delete</button></td>
       </tr>';
       }
       
