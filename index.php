@@ -8,7 +8,7 @@ define('VISTAS',ROOT.'Views'.DS.'Modules'.DS);
 define('API_CONCIERGE','http://www.conciergehotline.net/api/');
 define('API_TRAVEL','http://travelvipmiami.com/api/');
 define('API_AMENITIES','http://hotelroomdecoration.com/api/');
-define('RUTAURL','http://localhost/admingabriel/');
+define('RUTAURL','http://192.168.1.103/admingabriel/');
 
 define('RUTAASSETS','http://192.168.1.103/admingabriel/views/assets/');
 
