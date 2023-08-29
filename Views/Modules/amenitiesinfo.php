@@ -88,13 +88,13 @@ $rango2=intval(strtotime($fechafin));
 							<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
-									<input value="<?= $fechainicio ?>" class="form-control" type="date" required>
+									<input value="<?= $fechainicio ?>" class="form-control" id="rdate" name="rdate"  type="date" required>
 									<span class="form-label">Check In</span>
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
-									<input value="<?= $fechafin ?>" class="form-control" type="date" required>
+									<input value="<?= $fechafin ?>" class="form-control" id="rdate2" name="rdate2"  type="date" required>
 									<span class="form-label">Check out</span>
 								</div>
 							</div>
