@@ -10,7 +10,7 @@ define('API_TRAVEL','http://travelvipmiami.com/api/');
 define('API_AMENITIES','http://hotelroomdecoration.com/api/');
 
 
-define('RUTAASSETS','http://localhost/admingabriel/views/assets/');
+define('RUTAASSETS','http://192.168.1.103/admingabriel/views/assets/');
 
 require_once "Controllers/plantillaController.php";
 require_once "Controllers/reservasController.php";

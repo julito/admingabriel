@@ -1,23 +1,10 @@
 
 $(document).on("click",".btnEliminarReserva",function(){
     var idRes = $(this).attr("idRes");
-    //console.log("idRes",idRes);
-    $.ajax({
-        url: "../Controllers/reservasController.php",
-        type: "post",
-        success: function (result) {
-          console.log(result);
-        },
-      });
+   
 })
 
 $(document).ready(function(){
-  
-
-
-
-
-
     $("#makereservasconcierge").on('click',function()
     {  
     var fecha1=$("#date1").val();
