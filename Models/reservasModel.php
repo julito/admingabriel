@@ -1,8 +1,12 @@
 <?php
 
 class DatosReservasM{
+	static $API_CONCIERGE2='http://www.conciergehotline.net/api/';
+static $API_TRAVEL2='http://travelvipmiami.com/api/';
+static $API_AMENITIES2='http://hotelroomdecoration.com/api/';
 
     static public function CURLs($url,$metodo='GET',$data=''){
+		
         $curl = curl_init();
 
 		curl_setopt_array($curl, array(
@@ -58,26 +62,28 @@ class DatosReservasM{
 		return $data;
 	}
 
-	static public function eliminarReserva($id,$op){
+	static public function eliminarReserva($id,$op,$token){
+	include_once '../Controllers/sessionController.php';
 	switch($op)
 	{
 		case 1:
 			$columnaid='reservaciones_id';
-			$token=sessionController::get('tokenconcierge');
-			$API=API_CONCIERGE;
+			
+			$API=DatosReservasM::$API_CONCIERGE2;
 			break;
 		case 2:
 			$columnaid='id';
-			$token=sessionController::get('tokentravel');
-			$API=API_TRAVEL;
+			
+			$API=DatosReservasM::$API_TRAVEL2;
 			break;
-		case 1:
+		case 3:
 			$columnaid='reservaciones_id';
-			$token=sessionController::get('tokenamenities');
-			$API=API_AMENITIES;
+			
+			$API=DatosReservasM::$API_AMENITIES2;
 			break;
 
 	}
+	
 	
 	$data=DatosReservasM::CURLs( $API."reservaciones?nameId={$columnaid}&id={$id}&token={$token}",  'DELETE');
 	
@@ -88,4 +94,11 @@ class DatosReservasM{
 
 	}
 
+}
+
+if(isset($_POST['accion']))
+{
+	
+	$resp=DatosReservasM::eliminarReserva($_POST['id'],$_POST['api'],$_POST['token']);
+	echo $resp;
 }

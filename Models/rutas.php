@@ -11,7 +11,7 @@ class Ruta{
 
 
 
-		return "http://localhost/admingabriel/";
+		return RUTAURL;
 
 
 	}
@@ -21,7 +21,7 @@ class Ruta{
 
 
 
-		return "http://localhost/admingabriel/Views/assets/";
+		return RUTAURL."Views/assets/";
 
 	}
 
