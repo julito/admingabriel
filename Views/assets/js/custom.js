@@ -38,9 +38,9 @@ var ps = new PerfectScrollbar('#sidebar');
 --------------------------------------*/
 
 $(function () {
-  new Chart(document.getElementById("line_chart").getContext("2d"), getChartJs('line'));
+ // new Chart(document.getElementById("line_chart").getContext("2d"), getChartJs('line'));
   new Chart(document.getElementById("bar_chart").getContext("2d"), getChartJs('bar'));
-  new Chart(document.getElementById("radar_chart").getContext("2d"), getChartJs('radar'));
+  //new Chart(document.getElementById("radar_chart").getContext("2d"), getChartJs('radar'));
   new Chart(document.getElementById("pie_chart").getContext("2d"), getChartJs('pie'));
   new Chart(document.getElementById("area_chart").getContext("2d"), getChartJs('area'));
   new Chart(document.getElementById("donut_chart").getContext("2d"), getChartJs('donut'));
@@ -82,15 +82,11 @@ function getChartJs(type) {
     config = {
       type: 'bar',
       data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: ["Travel", "Tours", "Amenities"],
         datasets: [{
           label: "My First dataset",
-          data: [65, 59, 80, 81, 56, 55, 40],
+          data: [65, 59, 80],
           backgroundColor: 'rgba(33, 150, 243, 1)'
-        }, {
-          label: "My Second dataset",
-          data: [28, 48, 40, 19, 86, 27, 90],
-          backgroundColor: 'rgba(30, 208, 133, 1)'
         }]
       },
       options: {
