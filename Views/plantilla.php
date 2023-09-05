@@ -61,6 +61,20 @@
       <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
       <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
 
+
+
+       <!-- wow animation -->
+       <script src="<?= $rutaAssets ?>js/animate.js"></script>
+      <!-- select country -->
+      <script src="<?= $rutaAssets ?>js/bootstrap-select.js"></script>
+      <!-- owl carousel -->
+      <script src="<?= $rutaAssets ?>js/owl.carousel.js"></script> 
+      <!-- chart js -->
+      <script src="<?= $rutaAssets ?>js/Chart.min.js"></script>
+      <script src="<?= $rutaAssets ?>js/Chart.bundle.min.js"></script>
+      <script src="<?= $rutaAssets ?>js/utils.js"></script>
+      <script src="<?= $rutaAssets ?>js/analyser.js"></script>
+
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    </head>
    <body class="dashboard dashboard_1">
@@ -164,17 +178,7 @@
       </div>
   
 
-      <!-- wow animation -->
-      <script src="<?= $rutaAssets ?>js/animate.js"></script>
-      <!-- select country -->
-      <script src="<?= $rutaAssets ?>js/bootstrap-select.js"></script>
-      <!-- owl carousel -->
-      <script src="<?= $rutaAssets ?>js/owl.carousel.js"></script> 
-      <!-- chart js -->
-      <script src="<?= $rutaAssets ?>js/Chart.min.js"></script>
-      <script src="<?= $rutaAssets ?>js/Chart.bundle.min.js"></script>
-      <script src="<?= $rutaAssets ?>js/utils.js"></script>
-      <script src="<?= $rutaAssets ?>js/analyser.js"></script>
+     
 
 
 
