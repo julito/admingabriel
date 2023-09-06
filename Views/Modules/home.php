@@ -492,7 +492,7 @@ $totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcen
 
 
 
-         <?php
+<?php
 
 echo '
 
@@ -503,7 +503,7 @@ echo '
       datasets: [{
         labels: ["Total:'.$contreservas.'","Total: '.$conttransporte.'","Total: '.$contamenities.'"],
         data: ['.$contreservas.', '.$conttransporte.', '.$contamenities.'],
-        backgroundColor: "rgba(33, 150, 243, 1)"
+        backgroundColor: ["rgba(33, 150, 243, 1)","rgba(30, 208, 133, 1)","rgba(103, 58, 183, 1)"],
       }]
     },
     options: {
@@ -513,12 +513,26 @@ echo '
   };
  new Chart(document.getElementById("bar_chart").getContext("2d"), config);
 ';
-
 ?>
 
-
-
-
-
+<?php
+echo '
+const config2 = {
+   type: "pie",
+   data: {
+     datasets: [{
+       data: ["'.$totalmontos.'", "'.$montos1.'", "'.$montos2.'", "'.$montos3.'"],
+       backgroundColor: ["rgba(233, 30, 99, 1)","rgba(33, 150, 243, 1)","rgba(30, 208, 133, 1)","rgba(103, 58, 183, 1)"],
+     }],
+     labels: ["Total: $ ","Tours: $","Travels: $","Amenities: $"]
+   },
+   options: {
+     responsive: true,
+     legend: false
+   }
+ };
+ new Chart(document.getElementById("pie_chart").getContext("2d"), config2);
+';
+?>
       })
    </script>

@@ -46,15 +46,16 @@ $(function () {
  // new Chart(document.getElementById("line_chart").getContext("2d"), getChartJs('line'));
  // new Chart(document.getElementById("bar_chart").getContext("2d"), getChartJs('bar'));
   //new Chart(document.getElementById("radar_chart").getContext("2d"), getChartJs('radar'));
-  new Chart(document.getElementById("pie_chart").getContext("2d"), getChartJs('pie'));
+  //new Chart(document.getElementById("pie_chart").getContext("2d"), getChartJs('pie'));
   new Chart(document.getElementById("area_chart").getContext("2d"), getChartJs('area'));
   new Chart(document.getElementById("donut_chart").getContext("2d"), getChartJs('donut'));
 });
 
 function getChartJs(type) {
   var config = null;
+  var config2 = null;
 
-  if (type === 'line') {
+  /*if (type === 'line') {
     config = {
       type: 'line',
       data: {
@@ -82,8 +83,8 @@ function getChartJs(type) {
         legend: false
       }
     }
-  }
-  else if (type === 'bar') {
+  }*/
+  if (type === 'bar') {
     config = {
       type: 'bar',
       data: {
@@ -100,7 +101,7 @@ function getChartJs(type) {
       }
     }
   }
-  else if (type === 'radar') {
+  /*else if (type === 'radar') {
     config = {
       type: 'radar',
       data: {
@@ -128,27 +129,25 @@ function getChartJs(type) {
         legend: false
       }
     }
-  }
+  }*/
   else if (type === 'pie') {
     config = {
       type: 'pie',
       data: {
         datasets: [{
-          data: [80, 50, 30, 35, 45],
+          data: [80, 50, 30, 35],
           backgroundColor: [
             "rgba(33, 150, 243, 1)",
             "rgba(30, 208, 133, 1)",
             "rgba(233, 30, 99, 1)",
-            "rgba(103, 58, 183, 1)",
-            "rgba(33, 65, 98, 1)"
+            "rgba(103, 58, 183, 1)"
           ],
         }],
         labels: [
           "blue",
           "green",
           "pink",
-          "parple",
-          "Default"
+          "parple"
         ]
       },
       options: {
