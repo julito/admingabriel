@@ -503,7 +503,7 @@ echo '
       datasets: [{
         labels: ["Total:'.$contreservas.'","Total: '.$conttransporte.'","Total: '.$contamenities.'"],
         data: ['.$contreservas.', '.$conttransporte.', '.$contamenities.'],
-        backgroundColor: ["rgba(33, 150, 243, 1)","rgba(30, 208, 133, 1)","rgba(103, 58, 183, 1)"],
+        backgroundColor: ["rgba(33, 150, 243, 1)","rgba(30, 208, 133, 1)","rgba(233, 30, 99, 1)"],
       }]
     },
     options: {
@@ -521,14 +521,22 @@ const config2 = {
    type: "pie",
    data: {
      datasets: [{
-       data: ["'.$totalmontos.'", "'.$montos1.'", "'.$montos2.'", "'.$montos3.'"],
-       backgroundColor: ["rgba(233, 30, 99, 1)","rgba(33, 150, 243, 1)","rgba(30, 208, 133, 1)","rgba(103, 58, 183, 1)"],
+       data: ["'.$montos1.'", "'.$montos2.'", "'.$montos3.'"],
+       backgroundColor: ["rgba(33, 150, 243, 1)","rgba(30, 208, 133, 1)","rgba(233, 30, 99, 1)"],
      }],
-     labels: ["Total: $ ","Tours: $","Travels: $","Amenities: $"]
+     labels: ["Tours ","Travels ","Amenities "]
    },
    options: {
-     responsive: true,
-     legend: false
+     legend: {
+      display: true,
+      position: "top",
+
+      labels: {
+          fontColor: "#71748d",
+          fontFamily: "Circular Std Book",
+          fontSize: 14,
+      }
+  },
    }
  };
  new Chart(document.getElementById("pie_chart").getContext("2d"), config2);
