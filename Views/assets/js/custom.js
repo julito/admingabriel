@@ -84,7 +84,7 @@ function getChartJs(type) {
       }
     }
   }*/
-  if (type === 'bar') {
+  /*if (type === 'bar') {
     config = {
       type: 'bar',
       data: {
@@ -100,7 +100,7 @@ function getChartJs(type) {
         legend: false
       }
     }
-  }
+  }*/
   /*else if (type === 'radar') {
     config = {
       type: 'radar',
@@ -130,7 +130,7 @@ function getChartJs(type) {
       }
     }
   }*/
-  else if (type === 'pie') {
+  /*else if (type === 'pie') {
     config = {
       type: 'pie',
       data: {
@@ -155,7 +155,7 @@ function getChartJs(type) {
         legend: false
       }
     }
-  }
+  }*/
   return config;
 }
 
