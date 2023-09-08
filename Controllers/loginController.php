@@ -17,7 +17,7 @@ class loginController{
               Swal.fire({
                 title: 'Log in!',
                 html: 'Redirecting to the main page!',
-                timer: 2000,
+                timer: 1000,
                 timerProgressBar: true,
                 didOpen: () => {
                   Swal.showLoading()
