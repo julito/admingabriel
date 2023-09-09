@@ -75,6 +75,10 @@
       <script src="<?= $rutaAssets ?>js/utils.js"></script>
       <script src="<?= $rutaAssets ?>js/analyser.js"></script>
 
+      <script src="<?= $rutaAssets ?>js/highcharts.js"></script>
+      <script src="<?= $rutaAssets ?>js/exporting.js"></script>
+      <script src="<?= $rutaAssets ?>js/data.js"></script>
+
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    </head>
    <body class="dashboard dashboard_1">

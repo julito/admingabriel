@@ -1,6 +1,10 @@
 <?php
 
 class DatosReservasC{
+    public function ctrCargarEstadisticas($fechas,$hotel){
+        return DatosReservasM::mdlCargarEstadisticas($fechas,$hotel);
+        
+    }
 
     public function ctrCargarReservas(){
         return DatosReservasM::mdlCargarReservas();

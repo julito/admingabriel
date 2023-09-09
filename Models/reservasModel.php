@@ -32,6 +32,10 @@ static $API_AMENITIES2='http://hotelroomdecoration.com/api/';
     }
 
 
+	static public function mdlCargarEstadisticas($fechas,$hotel){
+        $data = DatosReservasM::CURLs(API_CONCIERGE."bitacora?Estadisticas=$fechas&hotel=$hotel");
+        return $data;
+    }
     static public function mdlCargarReservas(){
         $data = DatosReservasM::CURLs(API_CONCIERGE.'reservaciones?select=*&Columna=reservaciones_cupon&buscar='.$_SESSION["HOTEL"]);
         return $data;
