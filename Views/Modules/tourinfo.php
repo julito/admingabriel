@@ -97,7 +97,7 @@ foreach ($datos as $item) {
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
-                                       <input value="<?= $fechafin ?>" class="form-control" type="date" required>
+                                       <input value="<?= $fechafin ?>" class="form-control" id="rdate2" name="rdate2" type="date" required>
                                        <span class="form-label">Check out</span>
                                     </div>
                                  </div>
