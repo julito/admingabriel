@@ -113,6 +113,9 @@
                            <li>
                               <a href="amenitiesinfo">> <span>Amenities</span></a>
                            </li>
+                           <li>
+                              <a href="estadisticas">> <span>Estadisticas</span></a>
+                           </li>
                         </ul>
                      </li>
                      <?php }?>
