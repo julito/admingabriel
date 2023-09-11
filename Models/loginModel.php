@@ -40,6 +40,7 @@ class loginModel
         {
         $user = funcionesController::getPost('email');
         $pass = funcionesController::getPost('password');  
+        $hotel = funcionesController::getPost('hotel');
         }
         
         if ($user && $pass) {
@@ -62,6 +63,7 @@ class loginModel
                // var_dump($item);
                 sessionController::set('rol',$item[0]->rol_user);
                 sessionController::set('autenticado',true);
+                sessionController::set('HOTEL',$hotel);
                 if($item[0]->rol_user=='admin')
                 {
                     sessionController::set('tokenconcierge',$item[0]->token_user);

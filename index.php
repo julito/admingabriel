@@ -4,7 +4,7 @@
 
 session_start();
 
-$_SESSION["HOTEL"]="GABRIEL";
+//$_SESSION["HOTEL"]="GABRIEL";
 define('DS',DIRECTORY_SEPARATOR);
 define('ROOT',realpath(dirname(__FILE__)).DS);
 define('VISTAS',ROOT.'Views'.DS.'Modules'.DS);

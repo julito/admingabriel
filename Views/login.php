@@ -79,6 +79,13 @@
                               <label class="label_field">Password</label>
                               <input type="password" name="password" placeholder="Password" required />
                            </div>
+                           <div class="field">
+                              <label class="label_field">Hotel</label>
+                              <select name="hotel" id="hotel">
+                                 <option value="GABRIEL">GABRIEL</option>
+                                 <option value="YVE">YVE</option>
+                              </select>
+                           </div>
                           
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
