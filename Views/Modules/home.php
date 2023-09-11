@@ -1,8 +1,9 @@
 <?php
+
 echo '<script>
 // EVITAR REENVIO DE DATOS.
-    if (window.history.replaceState) { // verificamos disponibilidad
-    window.history.replaceState(null, null, window.location.href);
+if (window.history.replaceState) { // verificamos disponibilidad
+   window.history.replaceState(null, null, window.location.href);
 }
 </script>';
 $fechaActual = new DateTime();
@@ -125,10 +126,123 @@ foreach ($datos as $item) {
       $reservaspagadas3 += floatval($item->reservaciones_monto) * 0.10;
 }
 
-$totalmontos = $montos1+$montos2+$montos3;
-$totalreservaspagadas = $reservaspagadas+$reservaspagadas2+$reservaspagadas3;
-$totalporcentajes = $porcentaje1+$porcentaje2+$porcentaje3;
-$totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcentajeacumulado3;
+$totalmontos = $montos1 + $montos2 + $montos3;
+$totalreservaspagadas = $reservaspagadas + $reservaspagadas2 + $reservaspagadas3;
+$totalporcentajes = $porcentaje1 + $porcentaje2 + $porcentaje3;
+$totalporcentajesacumulados = $porcentajeacumulado + $porcentajeacumulado2 + $porcentajeacumulado3;
+
+
+$inicio = new DateTime($fechainicio);
+$fin = new DateTime($fechafin);
+$fin->modify('+1 day');
+
+if ($inicio <= $fin) {
+   $lista_dias = '';
+   $interval = new DateInterval('P1D');
+   $period = new DatePeriod($inicio, $interval, $fin);
+   $ctours = "";
+   $ctravel = "";
+   $camenities = "";
+
+   $reservas = new DatosReservasC();
+   $datosE = $reservas->ctrCargarEstadisticas("$fechainicio,$fechafin", $_SESSION['HOTEL']);
+
+
+   foreach ($datosE as $item) {
+
+      if ($item->origen == 'Concierge') {
+         $diasTours = explode(",", $item->dias);
+         $totalesTours = explode(",", $item->totales);
+      }
+      if ($item->origen == 'Travel') {
+         $diasTravel = explode(",", $item->dias);
+         $totalesTravel = explode(",", $item->totales);
+      }
+      if ($item->origen == 'Amenities') {
+         $diasAmenities = explode(",", $item->dias);
+         $totalesAmenities = explode(",", $item->totales);
+      }
+
+   }
+   $datosc = [];
+   $datost = [];
+   $datosa = [];
+   foreach ($period as $fecha) {
+      $ddia = intval($fecha->format('d'));
+      $datosc[$ddia] = 0;
+      $datost[$ddia] = 0;
+      $datosa[$ddia] = 0;
+      $lista_dias .= "'" . $fecha->format('d') . "',";
+   }
+
+
+
+   for ($i = 0; $i < count($diasTours); $i++) {
+      $datosc[intval($diasTours[$i])] = $totalesTours[$i];
+   }
+
+   for ($i = 0; $i < count($diasTravel); $i++) {
+      $datost[intval($diasTravel[$i])] = $totalesTravel[$i];
+   }
+
+   for ($i = 0; $i < count($diasAmenities); $i++) {
+      $datosa[intval($diasAmenities[$i])] = $totalesAmenities[$i];
+   }
+
+   foreach ($datosc as $item) {
+      $ctours .= $item . ",";
+   }
+
+   foreach ($datost as $item) {
+      $ctravel .= $item . ",";
+   }
+
+   foreach ($datosa as $item) {
+      $camenities .= $item . ",";
+   }
+}
+
+$cadena = "
+<script>
+    Highcharts.chart('USO_KIOSKO', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Comparativo entre Servicios'
+        },
+        subtitle: {
+            text: 'Hotels'
+        },
+        xAxis: {
+            categories: [$lista_dias]
+        },
+        yAxis: {
+            title: {
+                text: 'Cantidad de Visitas'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{
+            name: 'Tours',
+            data: [" . $ctours . "]
+        }, {
+            name: 'Travel',
+            data: [" . $ctravel . "]
+        }, {
+            name: 'Amenities',
+            data: [" . $camenities . "]
+        }]
+    });
+    </script>";
+
 
 ?>
 
@@ -142,7 +256,11 @@ $totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcen
                   <div class="card green_bg text-center">
                      <div class="card-header">
                         <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                           <h1 class="text-white my-3"><i class="fa fa-calendar"> DATE RANGE SEARCH <span><b><i><?= $fechainicio ?></i></b> / <b><i><?= $fechafin ?></i></b></span> </i></h1>
+                           <h1 class="text-white my-3"><i class="fa fa-calendar"> DATE RANGE SEARCH <span><b><i>
+                                          <?= $fechainicio ?>
+                                       </i></b> / <b><i>
+                                          <?= $fechafin ?>
+                                       </i></b></span> </i></h1>
                         </a>
                      </div>
                      <div id="collapseOne" class="collapse hide" data-parent="#accordion">
@@ -151,13 +269,15 @@ $totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcen
                               <div class="row">
                                  <div class="col-md-4">
                                     <div class="form-group">
-                                       <input value="<?= $fechainicio ?>" class="form-control" id="rdate" name="rdate" type="date" required>
+                                       <input value="<?= $fechainicio ?>" class="form-control" id="rdate" name="rdate"
+                                          type="date" required>
                                        <span class="form-label">Check In</span>
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
-                                       <input value="<?= $fechafin ?>" class="form-control" id="rdate2" name="rdate2" type="date" required>
+                                       <input value="<?= $fechafin ?>" class="form-control" id="rdate2" name="rdate2"
+                                          type="date" required>
                                        <span class="form-label">Check out</span>
                                     </div>
                                  </div>
@@ -178,114 +298,197 @@ $totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcen
 
    </div>
 
-   <div class="col-md-12">
-            <div class="row column1 social_media_section">
-               <div class="col-md-6 col-lg-3">
-                  <div class="full socile_icons fb margin_bottom_30">
-                     <div class="social_icon">
-                        <i class="fa fa-money"></i>
-                     </div>
-                     <div class="social_cont">
-                        <ul>
-                           <li>
-                              <span><strong>Total General</strong></span>
-                           </li>
-                           <li>
-                              <span><strong>$ <?= $totalmontos ?></strong></span>
-                           </li>
-                        </ul>
+   <div class="midde_cont">
+      <div class="container-fluid">
+         <div class="row column1">
+
+            <!-- MOSTAR DATOS EN TABLA -->
+
+            <div class="col-md-12">
+               <div class="row column1 social_media_section">
+
+                  <div style="width: 100%;" id="USO_KIOSKO"></div>
+                  <?= $cadena ?>
+
+
+
+               </div>
+
+            </div>
+         </div>
+      </div>
+
+
+   </div><br>
+   <!--
+   <div class="midde_cont">
+      <div class="container-fluid">
+         <div class="row column1">
+            <div class="col-md-6 col-lg-4">
+               <div class="full counter_section margin_bottom_30 yellow_bg">
+                  <div class="couter_icon">
+                     <div>
+                        <i class="fa fa-user"></i>
                      </div>
                   </div>
-               </div>
-               <div class="col-md-6 col-lg-3">
-                  <div class="full socile_icons tw margin_bottom_30">
-                     <div class="social_icon">
-                        <i class="fa fa-sort-amount-desc"></i>
-                     </div>
-                     <div class="social_cont">
-                        <ul>
-                           <li>
-                              <span><strong>Total Hotel %</strong></span>
-                           </li>
-                           <li>
-                              <span><strong>$ <?= $totalporcentajes ?></strong></span>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-6 col-lg-3">
-                  <div class="full socile_icons linked margin_bottom_30">
-                     <div class="social_icon">
-                        <i class="fa fa-check"></i>
-                     </div>
-                     <div class="social_cont">
-                        <ul>
-                           <li>
-                              <span><strong>Total Paid</strong></span>
-                           </li>
-                           <li>
-                              <span><strong>$ <?= $totalreservaspagadas ?></strong></span>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-6 col-lg-3">
-                  <div class="full socile_icons google_p margin_bottom_30">
-                     <div class="social_icon">
-                        <i class="fa fa-line-chart"></i>
-                     </div>
-                     <div class="social_cont">
-                        <ul>
-                           <li>
-                              <span><strong>Total Balance</strong></span>
-                           </li>
-                           <li>
-                              <span><strong>$ <?= $totalporcentajesacumulados ?></strong></span>
-                           </li>
-                        </ul>
+                  <div class="counter_no">
+                     <div>
+                        <p class="total_no">250.50</p>
+                        <p class="head_couter">Tours</p>
                      </div>
                   </div>
                </div>
             </div>
+            <div class="col-md-6 col-lg-4">
+               <div class="full counter_section margin_bottom_30 blue1_bg">
+                  <div class="couter_icon">
+                     <div>
+                        <i class="fa fa-clock-o"></i>
+                     </div>
+                  </div>
+                  <div class="counter_no">
+                     <div>
+                        <p class="total_no">123.50</p>
+                        <p class="head_couter">Travels</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+               <div class="full counter_section margin_bottom_30 green_bg">
+                  <div class="couter_icon">
+                     <div>
+                        <i class="fa fa-cloud-download"></i>
+                     </div>
+                  </div>
+                  <div class="counter_no">
+                     <div>
+                        <p class="total_no">1,805</p>
+                        <p class="head_couter">Amenities</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>-->
 
+   <div class="col-md-12">
+      <div class="row column1 social_media_section">
+         <div class="col-md-6 col-lg-3">
+            <div class="full socile_icons fb margin_bottom_30">
+               <div class="social_icon">
+                  <i class="fa fa-money"></i>
+               </div>
+               <div class="social_cont">
+                  <ul>
+                     <li>
+                        <span><strong>Total General</strong></span>
+                     </li>
+                     <li>
+                        <span><strong>$
+                              <?= $totalmontos ?>
+                           </strong></span>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-3">
+            <div class="full socile_icons tw margin_bottom_30">
+               <div class="social_icon">
+                  <i class="fa fa-sort-amount-desc"></i>
+               </div>
+               <div class="social_cont">
+                  <ul>
+                     <li>
+                        <span><strong>Total Hotel %</strong></span>
+                     </li>
+                     <li>
+                        <span><strong>$
+                              <?= $totalporcentajes ?>
+                           </strong></span>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-3">
+            <div class="full socile_icons linked margin_bottom_30">
+               <div class="social_icon">
+                  <i class="fa fa-check"></i>
+               </div>
+               <div class="social_cont">
+                  <ul>
+                     <li>
+                        <span><strong>Total Paid</strong></span>
+                     </li>
+                     <li>
+                        <span><strong>$
+                              <?= $totalreservaspagadas ?>
+                           </strong></span>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-3">
+            <div class="full socile_icons google_p margin_bottom_30">
+               <div class="social_icon">
+                  <i class="fa fa-line-chart"></i>
+               </div>
+               <div class="social_cont">
+                  <ul>
+                     <li>
+                        <span><strong>Total Balance</strong></span>
+                     </li>
+                     <li>
+                        <span><strong>$
+                              <?= $totalporcentajesacumulados ?>
+                           </strong></span>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+
+   </div>
+
+   <div class="midde_cont">
+      <div class="container-fluid">
+         <div class="row column1">
+            <div class="col-lg-6">
+               <div class="white_shd full margin_bottom_30">
+                  <div class="full graph_head">
+                     <div class="heading1 margin_0">
+                        <h2>Bar Chart</h2>
+                     </div>
+                  </div>
+                  <div class="map_section padding_infor_info">
+
+                     <canvas id="bar_chart"></canvas>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-6">
+               <div class="white_shd full margin_bottom_30">
+                  <div class="full graph_head">
+                     <div class="heading1 margin_0">
+                        <h2>Pie Chart</h2>
+                     </div>
+                  </div>
+                  <div class="map_section padding_infor_info">
+                     <canvas id="pie_chart"></canvas>
+                  </div>
+               </div>
+            </div>
          </div>
 
-<div class="midde_cont">
-   <div class="container-fluid">
- <div class="row column1">
-    <div class="col-lg-6">
-       <div class="white_shd full margin_bottom_30">
-         <div class="full graph_head">
-            <div class="heading1 margin_0">
-               <h2>Bar Chart</h2>
-             </div>
-           </div>
-      <div class="map_section padding_infor_info">
-        
-         <canvas id="bar_chart"></canvas>
+
+
       </div>
    </div>
-</div>
-<div class="col-lg-6">
-    <div class="white_shd full margin_bottom_30">
-       <div class="full graph_head">
-          <div class="heading1 margin_0">
-             <h2>Pie Chart</h2>
-          </div>
-       </div>
-   <div class="map_section padding_infor_info">
-      <canvas id="pie_chart"></canvas>
-   </div>
-</div>
-</div>
-</div>
-
-
-
-</div>
-</div>
    <div class="midde_cont">
       <div class="container-fluid">
          <div class="row column1">
@@ -307,7 +510,9 @@ $totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcen
                                  </div>
                                  <div class="price_table_inner">
                                     <div class="cont_table_price_blog">
-                                       <p class="blue1_color"><span class="price_no"><?= $contreservas ?></span></p>
+                                       <p class="blue1_color"><span class="price_no">
+                                             <?= $contreservas ?>
+                                          </span></p>
                                     </div>
                                     <div class="cont_table_price">
                                        <div class="table-responsive">
@@ -315,25 +520,35 @@ $totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcen
                                              <tbody>
                                                 <tr>
                                                    <th style="width:50%">Total Amount:</th>
-                                                   <td>$ <?= $montos1 ?></td>
+                                                   <td>$
+                                                      <?= $montos1 ?>
+                                                   </td>
                                                 </tr>
                                                 <tr>
                                                    <th>Hotel Porcentage (10%)</th>
-                                                   <td>$ <?= $porcentaje1 ?></td>
+                                                   <td>$
+                                                      <?= $porcentaje1 ?>
+                                                   </td>
                                                 </tr>
 
 
                                                 <tr>
                                                    <th>Paid:</th>
-                                                   <td>$ <?= $reservaspagadas ?></td>
+                                                   <td>$
+                                                      <?= $reservaspagadas ?>
+                                                   </td>
                                                 </tr>
                                                 <tr>
                                                    <th>Profit Balance:</th>
-                                                   <td>$ <?= $porcentajeacumulado ?></td>
+                                                   <td>$
+                                                      <?= $porcentajeacumulado ?>
+                                                   </td>
                                                 </tr>
                                                 <tr>
                                                    <th>Pending Collections:</th>
-                                                   <td><?= $reservaspendientes ?> Reservations</td>
+                                                   <td>
+                                                      <?= $reservaspendientes ?> Reservations
+                                                   </td>
                                                 </tr>
                                              </tbody>
                                           </table>
@@ -363,30 +578,42 @@ $totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcen
                                  </div>
                                  <div class="price_table_inner">
                                     <div class="cont_table_price_blog">
-                                       <p class="green_color"><span class="price_no"><?= $conttransporte ?></span></p>
+                                       <p class="green_color"><span class="price_no">
+                                             <?= $conttransporte ?>
+                                          </span></p>
                                     </div>
                                     <div class="table-responsive">
                                        <table class="table">
                                           <tbody>
                                              <tr>
                                                 <th style="width:50%">Total Amount:</th>
-                                                <td>$ <?= $montos2 ?></td>
+                                                <td>$
+                                                   <?= $montos2 ?>
+                                                </td>
                                              </tr>
                                              <tr>
                                                 <th>Hotel Porcentage (10%)</th>
-                                                <td>$ <?= $porcentaje2 ?></td>
+                                                <td>$
+                                                   <?= $porcentaje2 ?>
+                                                </td>
                                              </tr>
                                              <tr>
                                                 <th>Paid:</th>
-                                                <td>$ <?= $reservaspagadas2 ?></td>
+                                                <td>$
+                                                   <?= $reservaspagadas2 ?>
+                                                </td>
                                              </tr>
                                              <tr>
                                                 <th>Profit Balance:</th>
-                                                <td>$ <?= $porcentajeacumulado2 ?></td>
+                                                <td>$
+                                                   <?= $porcentajeacumulado2 ?>
+                                                </td>
                                              </tr>
                                              <tr>
                                                 <th>Pending Collections:</th>
-                                                <td><?= $reservaspendientes2 ?> Reservations</td>
+                                                <td>
+                                                   <?= $reservaspendientes2 ?> Reservations
+                                                </td>
                                              </tr>
                                           </tbody>
                                        </table>
@@ -415,30 +642,42 @@ $totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcen
                                  </div>
                                  <div class="price_table_inner">
                                     <div class="cont_table_price_blog">
-                                       <p class="red_color"><span class="price_no"><?= $contamenities ?></span></p>
+                                       <p class="red_color"><span class="price_no">
+                                             <?= $contamenities ?>
+                                          </span></p>
                                     </div>
                                     <div class="table-responsive">
                                        <table class="table">
                                           <tbody>
                                              <tr>
                                                 <th style="width:50%">Total Balance:</th>
-                                                <td>$ <?= $montos3 ?></td>
+                                                <td>$
+                                                   <?= $montos3 ?>
+                                                </td>
                                              </tr>
                                              <tr>
                                                 <th>Hotel Porcentage (10%)</th>
-                                                <td>$ <?= $porcentaje3 ?></td>
+                                                <td>$
+                                                   <?= $porcentaje3 ?>
+                                                </td>
                                              </tr>
                                              <tr>
                                                 <th>Paid:</th>
-                                                <td>$ <?= $reservaspagadas3 ?></td>
+                                                <td>$
+                                                   <?= $reservaspagadas3 ?>
+                                                </td>
                                              </tr>
                                              <tr>
                                                 <th>Profit Balance:</th>
-                                                <td>$ <?= $porcentajeacumulado3 ?></td>
+                                                <td>$
+                                                   <?= $porcentajeacumulado3 ?>
+                                                </td>
                                              </tr>
                                              <tr>
                                                 <th>Pending Collections:</th>
-                                                <td><?= $contamenities ?> Reservations</td>
+                                                <td>
+                                                   <?= $contamenities ?> Reservations
+                                                </td>
                                              </tr>
                                           </tbody>
                                        </table>
@@ -476,14 +715,14 @@ $totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcen
       </div>
    </div>
 
-   
+
    <script>
       $(document).ready(() => {
          new DataTable('.table1', {
             responsive: {
                details: {
                   display: DataTable.Responsive.display.modal({
-                     header: function(row) {
+                     header: function (row) {
                         var data = row.data();
                         return 'Details for ' + data[2];
                      }
@@ -498,17 +737,17 @@ $totalporcentajesacumulados = $porcentajeacumulado+$porcentajeacumulado2+$porcen
 
 
 
-<?php
+         <?php
 
-echo '
+         echo '
 
    const config = {
     type: "bar",
     data: {
       labels: ["Tours", "Travel", "Amenities"],
       datasets: [{
-        labels: ["Total:'.$contreservas.'","Total: '.$conttransporte.'","Total: '.$contamenities.'"],
-        data: ['.$contreservas.', '.$conttransporte.', '.$contamenities.'],
+        labels: ["Total:' . $contreservas . '","Total: ' . $conttransporte . '","Total: ' . $contamenities . '"],
+        data: [' . $contreservas . ', ' . $conttransporte . ', ' . $contamenities . '],
         backgroundColor: ["rgba(33, 150, 243, 1)","rgba(30, 208, 133, 1)","rgba(233, 30, 99, 1)"],
       }]
     },
@@ -519,15 +758,15 @@ echo '
   };
  new Chart(document.getElementById("bar_chart").getContext("2d"), config);
 ';
-?>
+         ?>
 
-<?php
-echo '
+         <?php
+         echo '
 const config2 = {
    type: "pie",
    data: {
      datasets: [{
-       data: ["'.$montos1.'", "'.$montos2.'", "'.$montos3.'"],
+       data: ["' . $montos1 . '", "' . $montos2 . '", "' . $montos3 . '"],
        backgroundColor: ["rgba(33, 150, 243, 1)","rgba(30, 208, 133, 1)","rgba(233, 30, 99, 1)"],
      }],
      labels: ["Tours ","Travels ","Amenities "]
@@ -547,6 +786,6 @@ const config2 = {
  };
  new Chart(document.getElementById("pie_chart").getContext("2d"), config2);
 ';
-?>
+         ?>
       })
    </script>
