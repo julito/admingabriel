@@ -2,53 +2,6 @@
 class graficosController
 {
 
-    public function construir_grafico_linea($nombreId,$cf,$rc){
-
-
-        $cadena="
-        <script>
-            Highcharts.chart('$nombreId', {
-                chart: {
-                    type: 'line'
-                },
-                title: {
-                    text: 'Comparativo entre Registro y Cuota'
-                },
-                subtitle: {
-                    text: 'Nombre Grafico'
-                },
-                xAxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec']
-                },
-                yAxis: {
-                    title: {
-                        text: 'Monto en C$'
-                    }
-                },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: true
-                        },
-                        enableMouseTracking: true
-                    }
-                },
-                series: [{
-                    name: 'Cuota Fija',
-                    data: [".$cf."]
-                }, {
-                    name: 'Registro Contable',
-                    data: [".$rc."]
-                }]
-            });
-            </script>";
-        
-        
-        
-        return $cadena;
-        
-        }
-
 
 public static function constuir_grafico_barras($contenedor,$titulo,$categorias,$valores,$ejex,$ejey)
 {
