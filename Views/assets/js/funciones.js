@@ -139,6 +139,7 @@ $(document).ready(function(){
 
     $("#makereservasconcierge").on('click',function()
     {  
+      
     var fecha1=$("#rdate").val();
     var fecha2=$("#rdate2").val();
     var hotel=$("#hotelorigen").val();
@@ -154,8 +155,10 @@ $(document).ready(function(){
         },
         success: function(respuesta) {
           datos = respuesta.results;
+         
           
-          datos.forEach(async function(item) {
+          
+          datos.forEach( function(item) {
             if (item.estado == 0) {
             
               var token=$("#tokenconcierge").val();
@@ -163,7 +166,7 @@ $(document).ready(function(){
 
              var puturl=`http://conciergehotline.net/api/reservaciones?id=${item.reservaciones_id}&nameId=reservaciones_id&token=${token}` ;
             try{
-             const response= await $.ajax({
+             const response=  $.ajax({
                 type: "PUT",
                 url: puturl,
                 async:true,
