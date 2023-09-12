@@ -1,24 +1,6 @@
 <?php
 
-echo '<script>
-// EVITAR REENVIO DE DATOS.
-if (window.history.replaceState) { // verificamos disponibilidad
-   window.history.replaceState(null, null, window.location.href);
-}
-</script>';
-$fechaActual = new DateTime();
-if (isset($_POST['rdate'])) {
-   $fechainicio = $_POST['rdate'];
-   $fechafin = $_POST['rdate2'];
-} else {
-   $fechainicio = new DateTime($fechaActual->format('Y-m-01'));
-   $fechainicio = $fechainicio->format('Y-m-d');
-   $fechafin = new DateTime($fechaActual->format('Y-m-t'));
-   $fechafin = $fechafin->format('Y-m-d');
-}
-
-$rango1 = intval(strtotime($fechainicio));
-$rango2 = intval(strtotime($fechafin));
+fechasController::getFechas($rango1,$rango2,$fechainicio,$fechafin);
 
 
 $reservas = new DatosReservasC();
@@ -103,6 +85,7 @@ $porcentaje3 = 0;
 $porcentajeacumulado3 = 0;
 $reservaspendientes3 = 0;
 $reservaspagadas3 = 0;
+if($datos)
 foreach ($datos as $item) {
    $fechar = intval(strtotime(substr($item->hecho, 0, 10)));
    if (!($fechar >= $rango1 && $fechar <= $rango2))
@@ -147,7 +130,7 @@ if ($inicio <= $fin) {
    $reservas = new DatosReservasC();
    $datosE = $reservas->ctrCargarEstadisticas("$fechainicio,$fechafin", $_SESSION['HOTEL']);
 
-
+if($datosE)
    foreach ($datosE as $item) {
 
       if ($item->origen == 'Concierge') {
@@ -320,6 +303,77 @@ $cadena = "
 
 
    </div><br>
+
+
+
+   <div class="midde_cont">
+      <div class="container-fluid">
+         <div class="row column1">
+
+            <!-- MOSTAR DATOS EN TABLA -->
+
+            <div class="col-md-6">
+               <div class="row column1 social_media_section">
+
+                  <div style="width: 100%;" id="datos_cantidad"></div>
+                 <table class="hidden" id='tabla_conteo'>
+                    <tbody>
+                     <tr>
+                        <th></th>
+                        <th>TOURS</th>
+                        <th>TRAVEL</th>
+                        <th>AMENITIES</th>
+                     </tr>
+                     <tr>
+                        <td>Servicios</td>
+                        <td><?= $contreservas ?></td>
+                        <td><?= $conttransporte ?></td>
+                        <td><?= $contamenities ?></td>
+                     </tr>
+                    </tbody> 
+                  </table>
+                 
+                  <?php
+                  $series=['Tours','Travels','Amenities'];
+                  $data=[$montos1 , $montos2, $montos3 ];
+                  graficosController::grafico_barras("datos_cantidad","Datos Correspondientes al periodo","tabla_conteo","Cantidades");
+                  
+                 
+                  ?>
+                  
+
+
+               </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+               <div class="row column1 social_media_section">
+
+                  <div style="width: 100%;" id="datos_montos"></div>
+              
+                 
+                  <?php
+                  $series=['Tours','Travels','Amenities'];
+                  $data=[$montos1 , $montos2, $montos3 ];
+                  graficosController::grafico_pastel("datos_montos","Montos Acumulados",$series,$data);
+                  
+                 
+                  ?>
+                  
+
+
+               </div>
+
+            </div>
+         </div>
+      </div>
+
+
+   </div><br>
+
+
    <!--
    <div class="midde_cont">
       <div class="container-fluid">

@@ -1,27 +1,5 @@
 <?php
-echo '<script>
-// EVITAR REENVIO DE DATOS.
-    if (window.history.replaceState) { // verificamos disponibilidad
-    window.history.replaceState(null, null, window.location.href);
-}
-</script>';
-$fechaActual = new DateTime();
-if (isset($_POST['rdate'])) {
-   $fechainicio = $_POST['rdate'];
-   $fechafin = $_POST['rdate2'];
-} else if (isset($_POST['finicio'])) {
-   $fechainicio = $_POST['finicio'];
-   $fechafin = $_POST['ffin'];
-} else {
-   $fechainicio = new DateTime($fechaActual->format('Y-m-01'));
-   $fechainicio = $fechainicio->format('Y-m-d');
-   $fechafin = new DateTime($fechaActual->format('Y-m-t'));
-   $fechafin = $fechafin->format('Y-m-d');
-}
-
-$rango1 = intval(strtotime($fechainicio));
-$rango2 = intval(strtotime($fechafin));
-
+fechasController::getFechas($rango1,$rango2,$fechainicio,$fechafin);
 
 $reservas = new DatosReservasC();
 $datos = $reservas->ctrCargarReservas();

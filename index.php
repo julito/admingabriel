@@ -21,6 +21,8 @@ require_once "Controllers/reservasController.php";
 require_once "Controllers/enlacesController.php";
 require_once "Controllers/sessionController.php";
 require_once "Controllers/loginController.php";
+require_once "Controllers/fechasController.php";
+require_once "Controllers/graficosController.php";
 require_once "Controllers/funcionesController.php";
 require_once "Models/rutas.php";
 require_once "Models/reservasModel.php";
