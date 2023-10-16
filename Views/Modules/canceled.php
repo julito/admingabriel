@@ -1,8 +1,5 @@
 <?php
 fechasController::getFechas($rango1,$rango2,$fechainicio,$fechafin);
-$estado[0]='Pendiente';
-$estado[1]='Pagado';
-$estado[2]='Cancelado';
 
 $reservas = new DatosReservasC();
 $datos = $reservas->ctrCargarReservas();
@@ -15,12 +12,10 @@ $reservaspendientes = 0;
 $reservaspagadas = 0;
 
 foreach ($datos as $item) {
-   if ($item->estado == 2)
-   continue;
    $fechar = intval(strtotime(substr($item->hecho, 0, 10)));
    if (!($fechar >= $rango1 && $fechar <= $rango2))
       continue;
-   if ($estado[$item->estado] == 0) {
+   if ($item->estado == 2) {    
       $tablareresevas .= '<tr">
       <td class="bg-danger"><i class="flaticon-download text-white"></i></td>
       <td>' . substr($item->hecho, 0, 10) . '</td>
@@ -28,20 +23,8 @@ foreach ($datos as $item) {
       <td>' . $item->reservaciones_name . '</td>
       <td>' . $item->reservaciones_monto . '</td>
       <td>' . $item->reservaciones_detalle . '</td>
-      <td>' . $estado[$item->estado] . '</td>
-      <td class="text-center"><button class="btn btn-danger btnEliminarReserva" idRes="' . $item->reservaciones_id . '"><i class="fa fa-trash text-white"></i> Canceled</button></td>
-      </tr>';
-   } else {
-      $tablareresevas .= '<tr>
-      <td><i class="flaticon-download text-danger"></i></td>
-      <td>' . substr($item->hecho, 0, 10) . '</td>
-      <td>' . $item->nombre . '</td>
-      <td>' . $item->reservaciones_name . '</td>
-      <td>' . $item->reservaciones_monto . '</td>
-      <td>' . $item->reservaciones_detalle . '</td>
-      <td>' . $estado[$item->estado] . '</td>
-      <td class="text-center"><button class="btn btn-danger btnEliminarReserva" idRes="' . $item->reservaciones_id . '"><i class="fa fa-trash text-white"></i> Canceled</button></td>
-      </tr>';
+      <td>Cancelado</td>
+          </tr>';
    }
 
 
@@ -49,14 +32,14 @@ foreach ($datos as $item) {
 
    $montos1 += floatval($item->reservaciones_monto);
    $porcentaje1 += floatval($item->reservaciones_monto) * 0.10;
-   if ($estado[$item->estado] == 0) {
+   if ($item->estado == 2) {
       $porcentajeacumulado += floatval($item->reservaciones_monto) * 0.10;
       $reservaspendientes++;
    } else
       $reservaspagadas += floatval($item->reservaciones_monto) * 0.10;
 }
 ?>
-<div class="midde_cont">
+ <div class="midde_cont">
    <div class="container-fluid">
       <div class="row column_title">
          <div class="col-md-12">
@@ -99,7 +82,7 @@ foreach ($datos as $item) {
          </div>
       </div>
    </div>
-</div>
+</div> 
 <div class="midde_cont">
    <div class="container-fluid">
       <div class="row column_title">
@@ -107,7 +90,7 @@ foreach ($datos as $item) {
          <!-- MOSTAR DATOS EN TABLA -->
 
          <div class="col-md-12">
-            <div class="row column1 social_media_section">
+          <!--   <div class="row column1 social_media_section">
                <div class="col-md-6 col-lg-3">
                   <div class="full socile_icons fb margin_bottom_30">
                      <div class="social_icon">
@@ -178,11 +161,11 @@ foreach ($datos as $item) {
                      </div>
                   </div>
                </div>
-            </div>
+            </div> -->
             <div class="white_shd full margin_bottom_30">
                <div class="full graph_head">
                   <div class="heading1 margin_0">
-                     <h2>TOURS RESERVATIONS</h2><br>
+                     <h2>TOURS RESERVATIONS CANCELED</h2><br>
                   </div>
                </div>
                <div class="table_section padding_infor_info">
@@ -196,8 +179,8 @@ foreach ($datos as $item) {
                               <th>Tour</th>
                               <th>Amount</th>
                               <th>Details</th>
-                              <th>Sate</th>
-                              <th>Actions</th>
+                              <th>State</th>
+                             
                            </tr>
                         </thead>
                         <tbody>

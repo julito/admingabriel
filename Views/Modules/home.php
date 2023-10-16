@@ -1,7 +1,10 @@
 <?php
+error_reporting(0);
 
 fechasController::getFechas($rango1,$rango2,$fechainicio,$fechafin);
-
+$estado[0]='Pendiente';
+$estado[1]='Pagado';
+$estado[2]='Cancelado';
 
 $reservas = new DatosReservasC();
 $datos = $reservas->ctrCargarReservas();
@@ -21,6 +24,8 @@ $reservaspendientes = 0;
 $reservaspagadas = 0;
 
 foreach ($datos as $item) {
+   if ($item->estado == 2)
+   continue;
    $fechar = intval(strtotime(substr($item->hecho, 0, 10)));
    if (!($fechar >= $rango1 && $fechar <= $rango2))
       continue;
@@ -37,7 +42,7 @@ foreach ($datos as $item) {
 
    $montos1 += floatval($item->reservaciones_monto);
    $porcentaje1 += floatval($item->reservaciones_monto) * 0.10;
-   if ($item->estado == 0) {
+   if ($estado[$item->estado] == 0) {
       $porcentajeacumulado += floatval($item->reservaciones_monto) * 0.10;
       $reservaspendientes++;
    } else
@@ -53,6 +58,8 @@ $porcentajeacumulado2 = 0;
 $reservaspendientes2 = 0;
 $reservaspagadas2 = 0;
 foreach ($datos2 as $item) {
+   if ($item->estado == 2)
+   continue;
    $fechar = intval(strtotime(substr($item->hecho, 0, 10)));
    if (!($fechar >= $rango1 && $fechar <= $rango2))
       continue;
@@ -69,7 +76,7 @@ foreach ($datos2 as $item) {
    $conttransporte++;
    $montos2 += floatval($item->total);
    $porcentaje2 += floatval($item->total) * 0.10;
-   if ($item->estado == 0) {
+   if ($estado[$item->estado] == 0) {
       $porcentajeacumulado2 += floatval($item->total) * 0.10;
       $reservaspendientes2++;
    } else
@@ -87,6 +94,8 @@ $reservaspendientes3 = 0;
 $reservaspagadas3 = 0;
 if($datos)
 foreach ($datos as $item) {
+   if ($item->estado == 2)
+   continue;
    $fechar = intval(strtotime(substr($item->hecho, 0, 10)));
    if (!($fechar >= $rango1 && $fechar <= $rango2))
       continue;
@@ -102,7 +111,7 @@ foreach ($datos as $item) {
    $contamenities++;
    $montos3 += floatval($item->reservaciones_monto);
    $porcentaje3 += floatval($item->reservaciones_monto) * 0.10;
-   if ($item->estado == 0) {
+   if ($estado[$item->estado] == 0) {
       $porcentajeacumulado3 += floatval($item->reservaciones_monto) * 0.10;
       $reservaspendientes3++;
    } else
@@ -195,7 +204,7 @@ $cadena = "
             text: 'Comparativo entre Servicios'
         },
         subtitle: {
-            text: 'Hotels'
+            text: 'The Gabriel South Beach'
         },
         xAxis: {
             categories: [$lista_dias]
@@ -217,7 +226,7 @@ $cadena = "
             name: 'Tours',
             data: [" . $ctours . "]
         }, {
-            name: 'Travel',
+            name: 'Transportation',
             data: [" . $ctravel . "]
         }, {
             name: 'Amenities',
@@ -321,7 +330,7 @@ $cadena = "
                      <tr>
                         <th></th>
                         <th>TOURS</th>
-                        <th>TRAVEL</th>
+                        <th>TRANSPORTATION</th>
                         <th>AMENITIES</th>
                      </tr>
                      <tr>
@@ -334,7 +343,7 @@ $cadena = "
                   </table>
                  
                   <?php
-                  $series=['Tours','Travels','Amenities'];
+                  $series=['Tours','Transportation','Amenities'];
                   $data=[$montos1 , $montos2, $montos3 ];
                   graficosController::grafico_barras("datos_cantidad","Datos Correspondientes al periodo","tabla_conteo","Cantidades");
                   
@@ -355,7 +364,7 @@ $cadena = "
               
                  
                   <?php
-                  $series=['Tours','Travels','Amenities'];
+                  $series=['Tours','Transportation','Amenities'];
                   $data=[$montos1 , $montos2, $montos3 ];
                   graficosController::grafico_pastel("datos_montos","Montos Acumulados",$series,$data);
                   
@@ -509,40 +518,7 @@ $cadena = "
 
    </div>
 
-   <div class="midde_cont">
-      <div class="container-fluid">
-         <div class="row column1">
-            <div class="col-lg-6">
-               <div class="white_shd full margin_bottom_30">
-                  <div class="full graph_head">
-                     <div class="heading1 margin_0">
-                        <h2>Bar Chart</h2>
-                     </div>
-                  </div>
-                  <div class="map_section padding_infor_info">
-
-                     <canvas id="bar_chart"></canvas>
-                  </div>
-               </div>
-            </div>
-            <div class="col-lg-6">
-               <div class="white_shd full margin_bottom_30">
-                  <div class="full graph_head">
-                     <div class="heading1 margin_0">
-                        <h2>Pie Chart</h2>
-                     </div>
-                  </div>
-                  <div class="map_section padding_infor_info">
-                     <canvas id="pie_chart"></canvas>
-                  </div>
-               </div>
-            </div>
-         </div>
-
-
-
-      </div>
-   </div>
+ 
    <div class="midde_cont">
       <div class="container-fluid">
          <div class="row column1">
@@ -628,7 +604,7 @@ $cadena = "
                            <div class="table_price full">
                               <div class="inner_table_price">
                                  <div class="price_table_head green_bg">
-                                    <h2>TRAVELS</h2>
+                                    <h2>TRANSPORTATION</h2>
                                  </div>
                                  <div class="price_table_inner">
                                     <div class="cont_table_price_blog">
@@ -790,56 +766,5 @@ $cadena = "
 
 
 
-
-         <?php
-
-         echo '
-
-   const config = {
-    type: "bar",
-    data: {
-      labels: ["Tours", "Travel", "Amenities"],
-      datasets: [{
-        labels: ["Total:' . $contreservas . '","Total: ' . $conttransporte . '","Total: ' . $contamenities . '"],
-        data: [' . $contreservas . ', ' . $conttransporte . ', ' . $contamenities . '],
-        backgroundColor: ["rgba(33, 150, 243, 1)","rgba(30, 208, 133, 1)","rgba(233, 30, 99, 1)"],
-      }]
-    },
-    options: {
-      responsive: true,
-      legend: false
-    }
-  };
- new Chart(document.getElementById("bar_chart").getContext("2d"), config);
-';
-         ?>
-
-         <?php
-         echo '
-const config2 = {
-   type: "pie",
-   data: {
-     datasets: [{
-       data: ["' . $montos1 . '", "' . $montos2 . '", "' . $montos3 . '"],
-       backgroundColor: ["rgba(33, 150, 243, 1)","rgba(30, 208, 133, 1)","rgba(233, 30, 99, 1)"],
-     }],
-     labels: ["Tours ","Travels ","Amenities "]
-   },
-   options: {
-     legend: {
-      display: true,
-      position: "top",
-
-      labels: {
-          fontColor: "#71748d",
-          fontFamily: "Circular Std Book",
-          fontSize: 14,
-      }
-  },
-   }
- };
- new Chart(document.getElementById("pie_chart").getContext("2d"), config2);
-';
-         ?>
       })
    </script>

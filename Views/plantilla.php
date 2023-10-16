@@ -116,6 +116,9 @@
                            <li>
                               <a href="estadisticas">> <span>Estadisticas</span></a>
                            </li>
+                           <li>
+                              <a href="canceled">> <span>Canceled</span></a>
+                           </li>
                         </ul>
                      </li>
                      <?php }?>

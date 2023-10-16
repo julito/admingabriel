@@ -99,8 +99,8 @@ class DatosReservasM
 		}
 
 
-		$data = DatosReservasM::CURLs($API . "reservaciones?nameId={$columnaid}&id={$id}&token={$token}", 'DELETE');
-
+		$data = DatosReservasM::CURLs($API . "reservaciones?nameId={$columnaid}&id={$id}&token={$token}", 'PUT','estado=2');
+		
 		if ($data == "The process was successful")
 			return true;
 		else

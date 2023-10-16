@@ -84,7 +84,7 @@
                         </div>
                         <div class="field mb-5">
                            <label class="label_field">Hotel</label>
-                           <select name="hotel" id="hotel" class="form-control">
+                           <select name="hotel" id="hotel" >
                               <option value="GABRIEL">GABRIEL</option>
                               <option value="YVE">YVE</option>
                            </select>
@@ -92,7 +92,7 @@
 
                         <div class="field margin_0 mt-5">
                            <label class="label_field hidden">hidden label</label>
-                           <button class="main_bt">Sing In</button>
+                           <button class="main_bt">Sign In</button>
                         </div>
                      </fieldset>
                      <?php

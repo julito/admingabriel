@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 
         Swal.fire({
-            title: 'Do you want to delete item?',
+            title: 'Do you want to cancel item?',
             
             showCancelButton: true,
             confirmButtonText: 'Save',
@@ -49,7 +49,7 @@ $(document).ready(function(){
 
 
       Swal.fire({
-          title: 'Do you want to delete item?',
+          title: 'Do you want to canceled item?',
           
           showCancelButton: true,
           confirmButtonText: 'Save',
@@ -92,7 +92,7 @@ $(document).ready(function(){
 
 
         Swal.fire({
-            title: 'Do you want to delete item?',
+            title: 'Do you want to cancel item?',
             
             showCancelButton: true,
             confirmButtonText: 'Save',
@@ -145,7 +145,7 @@ $(document).ready(function(){
     var hotel=$("#hotelorigen").val();
     var url=`http://conciergehotline.net/api/reservaciones?select=*&between1=${fecha1}&between2=${fecha2}&filterTo=reservaciones_cupon&inTo=${hotel}&Columna=hecho`;
   
-    
+    console.log(url);
     $.ajax({
         type: "GET",
         url: url,
@@ -156,10 +156,12 @@ $(document).ready(function(){
         success: function(respuesta) {
           datos = respuesta.results;
          
-          
+          var conteo=0
           
           datos.forEach( function(item) {
+            console.log(item);
             if (item.estado == 0) {
+              conteo++;
             
               var token=$("#tokenconcierge").val();
 
@@ -186,6 +188,16 @@ $(document).ready(function(){
 
             }
           });
+          if(conteo>0)
+          {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
           
     
         }

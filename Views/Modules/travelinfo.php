@@ -1,6 +1,8 @@
 <?php
 fechasController::getFechas($rango1,$rango2,$fechainicio,$fechafin);  
-
+$estado[0]='Pendiente';
+$estado[1]='Pagado';
+$estado[2]='Cancelado';
    $reservas = new DatosReservasC();
    $datos2 = $reservas->ctrCargarReservasTravel();
    $tablatravel="";
@@ -11,10 +13,12 @@ fechasController::getFechas($rango1,$rango2,$fechainicio,$fechafin);
    $reservaspendientes2=0;
    $reservaspagadas2=0;
    foreach ($datos2 as $item) {
+      if ($item->estado == 2)
+      continue;
       $fechar=intval(strtotime(substr($item->hecho, 0, 10)));
       if(!($fechar>=$rango1 && $fechar<=$rango2) )
       continue;
-      if($item->estado == 0){
+      if($estado[$item->estado] == 0){
          $tablatravel.= '<tr>
       <td class="bg-danger"><i class="flaticon-download text-white"></i></td>
       <td>' . substr($item->hecho, 0, 10) . '</td>
@@ -24,7 +28,7 @@ fechasController::getFechas($rango1,$rango2,$fechainicio,$fechafin);
       <td>' . $item->destino . '</td>
       <td>' . $item->personas . '</td>
       <td>' . $item->total . '</td>
-      <td>' . $item->estado . '</td>
+      <td>' . $estado[$item->estado] . '</td>
       <td class="text-center"><button class="btn btn-danger btnEliminarTravel" idRes="' . $item->id . '"><i class="fa fa-trash text-white"></i> Delete</button></td>
       </tr>';
       }else{
@@ -37,7 +41,7 @@ fechasController::getFechas($rango1,$rango2,$fechainicio,$fechafin);
          <td>' . $item->destino . '</td>
          <td>' . $item->personas . '</td>
          <td>' . $item->total . '</td>
-         <td>' . $item->estado . '</td>
+         <td>' . $estado[$item->estado] . '</td>
          <td class="text-center"><button class="btn btn-danger btnEliminarTravel" idRes="' . $item->id . '"><i class="fa fa-trash text-white"></i> Delete</button></td>
          </tr>';
          $conttransporte++;
@@ -45,7 +49,7 @@ fechasController::getFechas($rango1,$rango2,$fechainicio,$fechafin);
 
       $montos2+=floatval($item->total);
       $porcentaje2+=floatval($item->total)*0.10;
-      if($item->estado==0){
+      if($estado[$item->estado]==0){
          $porcentajeacumulado2+=floatval($item->total)*0.10;
          $reservaspendientes2++;
       }
