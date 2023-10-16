@@ -75,12 +75,12 @@ foreach ($datos2 as $item) {
       </tr>';
    $conttransporte++;
    $montos2 += floatval($item->total);
-   $porcentaje2 += floatval($item->total) * 0.10;
+   $porcentaje2 += floatval($item->total) * 0.20;
    if ($estado[$item->estado] == 0) {
-      $porcentajeacumulado2 += floatval($item->total) * 0.10;
+      $porcentajeacumulado2 += floatval($item->total) * 0.20;
       $reservaspendientes2++;
    } else
-      $reservaspagadas2 += floatval($item->reservaciones_monto) * 0.10;
+      $reservaspagadas2 += floatval($item->reservaciones_monto) * 0.20;
 }
 
 $reservas = new DatosReservasC();
@@ -110,12 +110,12 @@ foreach ($datos as $item) {
 
    $contamenities++;
    $montos3 += floatval($item->reservaciones_monto);
-   $porcentaje3 += floatval($item->reservaciones_monto) * 0.10;
+   $porcentaje3 += floatval($item->reservaciones_monto) * 0.20;
    if ($estado[$item->estado] == 0) {
-      $porcentajeacumulado3 += floatval($item->reservaciones_monto) * 0.10;
+      $porcentajeacumulado3 += floatval($item->reservaciones_monto) * 0.20;
       $reservaspendientes3++;
    } else
-      $reservaspagadas3 += floatval($item->reservaciones_monto) * 0.10;
+      $reservaspagadas3 += floatval($item->reservaciones_monto) * 0.20;
 }
 
 $totalmontos = $montos1 + $montos2 + $montos3;
@@ -622,7 +622,7 @@ $cadena = "
                                                 </td>
                                              </tr>
                                              <tr>
-                                                <th>Hotel Porcentage (10%)</th>
+                                                <th>Hotel Porcentage (20%)</th>
                                                 <td>$
                                                    <?= $porcentaje2 ?>
                                                 </td>
@@ -686,7 +686,7 @@ $cadena = "
                                                 </td>
                                              </tr>
                                              <tr>
-                                                <th>Hotel Porcentage (10%)</th>
+                                                <th>Hotel Porcentage (20%)</th>
                                                 <td>$
                                                    <?= $porcentaje3 ?>
                                                 </td>
