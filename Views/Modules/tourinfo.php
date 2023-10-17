@@ -213,7 +213,12 @@ foreach ($datos as $item) {
          </div>
       </div>
    </div>
-
+<!-- footer -->
+<div class="container-fluid">
+   <div class="footer">
+      <p>Copyright © 2023 Designed by ConciergeHotline. All rights reserved.</p>
+   </div>
+</div>
 
 </div>
 

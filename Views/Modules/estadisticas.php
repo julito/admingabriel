@@ -113,7 +113,7 @@ $cadena = "
             type: 'line'
         },
         title: {
-            text: 'Comparativo entre Servicios'
+            text: 'Comparison between Services'
         },
         subtitle: {
             text: 'Hotels'

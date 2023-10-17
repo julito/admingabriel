@@ -201,7 +201,7 @@ $cadena = "
             type: 'line'
         },
         title: {
-            text: 'Comparativo entre Servicios'
+            text: 'Comparison between Services'
         },
         subtitle: {
             text: 'The Gabriel South Beach'
@@ -345,7 +345,7 @@ $cadena = "
                   <?php
                   $series=['Tours','Transportation','Amenities'];
                   $data=[$montos1 , $montos2, $montos3 ];
-                  graficosController::grafico_barras("datos_cantidad","Datos Correspondientes al periodo","tabla_conteo","Cantidades");
+                  graficosController::grafico_barras("datos_cantidad","Data corresponding to the date range","tabla_conteo","Cantidades");
                   
                  
                   ?>
@@ -366,7 +366,7 @@ $cadena = "
                   <?php
                   $series=['Tours','Transportation','Amenities'];
                   $data=[$montos1 , $montos2, $montos3 ];
-                  graficosController::grafico_pastel("datos_montos","Montos Acumulados",$series,$data);
+                  graficosController::grafico_pastel("datos_montos","Accumulated Amounts",$series,$data);
                   
                  
                   ?>
@@ -740,7 +740,7 @@ $cadena = "
       <!-- footer -->
       <div class="container-fluid">
          <div class="footer">
-            <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
+            <p>Copyright © 2023 Designed by ConciergeHotline. All rights reserved.</p>
          </div>
       </div>
    </div>

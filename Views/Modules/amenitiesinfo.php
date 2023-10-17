@@ -45,13 +45,13 @@ $estado[2]='Cancelado';
       
    $contamenities++;
    $montos3+=floatval($item->reservaciones_monto);
-      $porcentaje3+=floatval($item->reservaciones_monto)*0.10;
+      $porcentaje3+=floatval($item->reservaciones_monto)*0.20;
       if($estado[$item->estado]==0){
-         $porcentajeacumulado3+=floatval($item->reservaciones_monto)*0.10;
+         $porcentajeacumulado3+=floatval($item->reservaciones_monto)*0.20;
          $reservaspendientes3++;
       }
       else
-      $reservaspagadas3+=floatval($item->reservaciones_monto)*0.10;
+      $reservaspagadas3+=floatval($item->reservaciones_monto)*0.20;
 
    }
 ?>
@@ -218,7 +218,7 @@ $estado[2]='Cancelado';
 <!-- footer -->
 <div class="container-fluid">
    <div class="footer">
-      <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
+      <p>Copyright © 2023 Designed by ConciergeHotline. All rights reserved.</p>
    </div>
 </div>
 </div>
