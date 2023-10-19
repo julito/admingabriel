@@ -137,13 +137,82 @@ $(document).ready(function(){
 
 
 
-    $("#makereservasconcierge").on('click',function()
+    $(".makereservasC").on('click',function()
     {  
       
     var fecha1=$("#rdate").val();
     var fecha2=$("#rdate2").val();
     var hotel=$("#hotelorigen").val();
-    var url=`http://conciergehotline.net/api/reservaciones?select=*&between1=${fecha1}&between2=${fecha2}&filterTo=reservaciones_cupon&inTo=${hotel}&Columna=hecho`;
+    var url=`https://conciergehotline.net/api/reservaciones?select=*&between1=${fecha1}&between2=${fecha2}&filterTo=reservaciones_cupon&inTo=${hotel}&Columna=hecho`;
+  
+    console.log(url);
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {},
+        beforeSend: function() {
+    
+        },
+        success: function(respuesta) {
+          datos = respuesta.results;
+         
+         
+          var conteo=0
+          
+          datos.forEach( function(item) {
+            console.log(item);
+            if (item.estado == 0) {
+              conteo++;
+            
+              var token=$("#tokenconcierge").val();
+
+
+             var puturl=`https://conciergehotline.net/api/reservaciones?id=${item.reservaciones_id}&nameId=reservaciones_id&token=${token}` ;
+            try{
+             const response=  $.ajax({
+                type: "PUT",
+                url: puturl,
+                async:true,
+                data: {'estado':1},
+                beforeSend: function() {
+            
+                },
+                success: function(respuesta) {
+                  console.log(respuesta);
+                  
+            
+                }
+              });
+            } catch (putError) {
+                console.error("Error in PUT request:", putError);
+            }
+
+            }
+          });
+          if(conteo>0)
+          {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+          
+    
+        }
+      });
+    
+    })
+    
+    $(".makereservasA").on('click',function()
+    {  
+      
+    var fecha1=$("#rdate").val();
+    var fecha2=$("#rdate2").val();
+    var hotel=$("#hotelorigen").val();
+    var url=`https://hotelroomdecoration.com/api/reservaciones?select=*&between1=${fecha1}&between2=${fecha2}&filterTo=reservaciones_cupon&inTo=${hotel}&Columna=hecho`;
   
     console.log(url);
     $.ajax({
@@ -166,7 +235,75 @@ $(document).ready(function(){
               var token=$("#tokenconcierge").val();
 
 
-             var puturl=`http://conciergehotline.net/api/reservaciones?id=${item.reservaciones_id}&nameId=reservaciones_id&token=${token}` ;
+             var puturl=`https://hotelroomdecoration.com/api/reservaciones?id=${item.reservaciones_id}&nameId=reservaciones_id&token=${token}` ;
+            try{
+             const response=  $.ajax({
+                type: "PUT",
+                url: puturl,
+                async:true,
+                data: {'estado':1},
+                beforeSend: function() {
+            
+                },
+                success: function(respuesta) {
+                  console.log(respuesta);
+                  
+            
+                }
+              });
+            } catch (putError) {
+                console.error("Error in PUT request:", putError);
+            }
+
+            }
+          });
+          if(conteo>0)
+          {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+          
+    
+        }
+      });
+    
+    })
+
+    $(".makereservasT").on('click',function()
+    {  
+      
+    var fecha1=$("#rdate").val();
+    var fecha2=$("#rdate2").val();
+    var hotel=$("#hotelorigen").val();
+    var url=`https://travelvipmiami.com/api/reservaciones?select=*&between1=${fecha1}&between2=${fecha2}&filterTo=observacion&inTo=${hotel}&Columna=hecho`;
+  
+    console.log(url);
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: {},
+        beforeSend: function() {
+    
+        },
+        success: function(respuesta) {
+          datos = respuesta.results;
+         
+          var conteo=0
+          
+          datos.forEach( function(item) {
+            console.log(item);
+            if (item.estado == 0) {
+              conteo++;
+            
+              var token=$("#tokenconcierge").val();
+
+
+             var puturl=`https://travelvipmiami.com/api/reservaciones?id=${item.reservaciones_id}&nameId=reservaciones_id&token=${token}` ;
             try{
              const response=  $.ajax({
                 type: "PUT",

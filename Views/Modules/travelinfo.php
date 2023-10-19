@@ -210,7 +210,7 @@ $estado[2]='Cancelado';
                      </table>
                   </div>
                   <div class="price_table_bottom">
-                     <div class="center"><a class="main_bt" href="">Make Payment</a></div>
+                     <div class="center"><a class="main_bt makereservasT" >Make Payment</a></div>
                   </div>
                </div>
             </div>

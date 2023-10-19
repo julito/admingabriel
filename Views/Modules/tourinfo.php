@@ -206,7 +206,7 @@ foreach ($datos as $item) {
                      </table>
                   </div>
                   <div class="price_table_bottom">
-                     <div class="center"><a class="main_bt" id="makereservasconcierge">Make Payment</a></div>
+                     <div class="center"><a class="main_bt makereservasC" id="makereservasconcierge">Make Payment</a></div>
                   </div>
                </div>
             </div>
