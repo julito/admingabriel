@@ -193,7 +193,7 @@ if($datosE)
       $camenities .= $item . ",";
    }
 }
-
+$namehotel=sessionController::get('HOTEL');
 $cadena = "
 <script>
     Highcharts.chart('USO_KIOSKO', {
@@ -204,7 +204,7 @@ $cadena = "
             text: 'Comparison between Services'
         },
         subtitle: {
-            text: 'The Gabriel South Beach'
+            text: '$namehotel'
         },
         xAxis: {
             categories: [$lista_dias]
@@ -768,3 +768,5 @@ $cadena = "
 
       })
    </script>
+
+

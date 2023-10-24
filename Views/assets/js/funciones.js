@@ -232,7 +232,7 @@ $(document).ready(function(){
             if (item.estado == 0) {
               conteo++;
             
-              var token=$("#tokenconcierge").val();
+              var token=$("#tokenamenities").val();
 
 
              var puturl=`https://hotelroomdecoration.com/api/reservaciones?id=${item.reservaciones_id}&nameId=reservaciones_id&token=${token}` ;
@@ -300,10 +300,10 @@ $(document).ready(function(){
             if (item.estado == 0) {
               conteo++;
             
-              var token=$("#tokenconcierge").val();
+              var token=$("#tokentravel").val();
 
 
-             var puturl=`https://travelvipmiami.com/api/reservaciones?id=${item.reservaciones_id}&nameId=reservaciones_id&token=${token}` ;
+             var puturl=`https://travelvipmiami.com/api/reservaciones?id=${item.id}&nameId=id&token=${token}` ;
             try{
              const response=  $.ajax({
                 type: "PUT",
