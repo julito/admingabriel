@@ -6,6 +6,13 @@ $estado[0]='Pendiente';
 $estado[1]='Pagado';
 $estado[2]='Cancelado';
 
+$reservasCanceladas = new DatosReservasC();
+$canceled = $reservasCanceladas->ctrContarReservasCanceladas();
+$contarCanceled = '';
+foreach($canceled as $item){
+ $contarCanceled++;
+} // continuar aqui
+
 $reservas = new DatosReservasC();
 $datos = $reservas->ctrCargarReservas();
 $tablareresevas = '';
@@ -237,6 +244,7 @@ $cadena = "
 
 
 ?>
+
 
 <div class="midde_cont">
    <div class="container-fluid">
@@ -495,6 +503,7 @@ $cadena = "
                </div>
             </div>
          </div>
+
          <div class="col-md-6 col-lg-3">
             <div class="full socile_icons google_p margin_bottom_30">
                <div class="social_icon">
@@ -663,6 +672,7 @@ $cadena = "
                            </div>
                         </div>
                         <!-- end column price -->
+                        
                         <!-- column price -->
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                            <div class="table_price full">
@@ -727,6 +737,68 @@ $cadena = "
                            </div>
                         </div>
                         <!-- end column price -->
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                           <div class="table_price full">
+                              <div class="inner_table_price">
+                                 <div class="price_table_head green_bg">
+                                    <h2>CANCELED</h2>
+                                 </div>
+                                 <div class="price_table_inner">
+                                    <div class="cont_table_price_blog">
+                                       <p class="green_color"><span class="price_no">
+                                             <?= $contarCanceled ?>
+                                          </span></p>
+                                    </div>
+                                    <div class="table-responsive">
+                                       <table class="table">
+                                          <tbody>
+                                             <tr>
+                                                <th style="width:50%">Total Amount:</th>
+                                                <td>$
+                                                   <?= 0 ?>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <th>Hotel Porcentage (20%)</th>
+                                                <td>$
+                                                   <?= 0 ?>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <th>Paid:</th>
+                                                <td>$
+                                                   <?= 0 ?>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <th>Profit Balance:</th>
+                                                <td>$
+                                                   <?= 0 ?>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <th>Pending Collections:</th>
+                                                <td>
+                                                   <?= 0 ?> Reservations
+                                                </td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
+                                 <div class="price_table_bottom">
+                                    <?php if (sessionController::ValidateUser('admin')) { ?>
+                                       <form action="travelinfo" class="center" method="POST">
+
+                                          <input value="<?= $fechainicio ?>" type="hidden" name="finicio" id="finicio">
+                                          <input value="<?= $fechafin ?>" type="hidden" name="ffin" id="ffin">
+                                          <input type="submit" class="main_bt" value="View Details">
+                                       </form>
+                                    <?php } ?>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
                         <!-- column price -->
 
                         <!-- end column price -->
