@@ -6,13 +6,6 @@ $estado[0]='Pendiente';
 $estado[1]='Pagado';
 $estado[2]='Cancelado';
 
-$reservasCanceladas = new DatosReservasC();
-$canceled = $reservasCanceladas->ctrContarReservasCanceladas();
-$contarCanceled = '';
-foreach($canceled as $item){
- $contarCanceled++;
-} // continuar aqui
-
 $reservas = new DatosReservasC();
 $datos = $reservas->ctrCargarReservas();
 $tablareresevas = '';
@@ -124,6 +117,15 @@ foreach ($datos as $item) {
    } else
       $reservaspagadas3 += floatval($item->reservaciones_monto) * 0.20;
 }
+
+
+$reservasCanceladas = new DatosReservasC();
+$canceled = $reservasCanceladas->ctrContarReservasCanceladas();
+$contarCanceled = 0;
+foreach($canceled as $item){
+
+}
+ $contarCanceled++;
 
 $totalmontos = $montos1 + $montos2 + $montos3;
 $totalreservaspagadas = $reservaspagadas + $reservaspagadas2 + $reservaspagadas3;
@@ -788,7 +790,7 @@ $cadena = "
                                  </div>
                                  <div class="price_table_bottom">
                                     <?php if (sessionController::ValidateUser('admin')) { ?>
-                                       <form action="travelinfo" class="center" method="POST">
+                                       <form action="canceled" class="center" method="POST">
 
                                           <input value="<?= $fechainicio ?>" type="hidden" name="finicio" id="finicio">
                                           <input value="<?= $fechafin ?>" type="hidden" name="ffin" id="ffin">
