@@ -122,10 +122,15 @@ foreach ($datos as $item) {
 $reservasCanceladas = new DatosReservasC();
 $canceled = $reservasCanceladas->ctrContarReservasCanceladas();
 $contarCanceled = 0;
+$tableCanceled = '';
 foreach($canceled as $item){
+$tableCanceled.='<tr>
+<td>' . $item->estado . '</td>
+</tr>';
 
 }
- $contarCanceled++;
+$contarCanceled++;
+ //fin reservas canceladas
 
 $totalmontos = $montos1 + $montos2 + $montos3;
 $totalreservaspagadas = $reservaspagadas + $reservaspagadas2 + $reservaspagadas3;
