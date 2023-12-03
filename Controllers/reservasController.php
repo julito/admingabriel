@@ -31,9 +31,5 @@ class DatosReservasC{
         return DatosReservasM::mdlBorrarReservaciones();
     }
 
-    public function ctrContarReservasCanceladas(){
-        return DatosReservasM::mdlCargarReservasCanceladas();
-    }
-
    
 }
