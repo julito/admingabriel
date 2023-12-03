@@ -31,7 +31,6 @@ foreach ($datos as $item) {
       <td>' . $estado[$item->estado] . '</td>
       <td class="text-center"><button class="btn btn-danger btnEliminarReserva" idRes="' . $item->reservaciones_id . '"><i class="fa fa-trash text-white"></i> Canceled</button></td>
       </tr>';
-     
    } else {
       $tablareresevas .= '<tr>
       <td><i class="flaticon-download text-danger"></i></td>
@@ -45,8 +44,10 @@ foreach ($datos as $item) {
       </tr>';
    }
 
-  $montos1 += floatval($item->reservaciones_monto); 
+
    $contreservas++;
+
+   $montos1 += floatval($item->reservaciones_monto);
    $porcentaje1 += floatval($item->reservaciones_monto) * 0.10;
    if ($estado[$item->estado] == 0) {
       $porcentajeacumulado += floatval($item->reservaciones_monto) * 0.10;
