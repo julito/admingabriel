@@ -2,9 +2,7 @@ $(document).ready(function(){
   
     $(document).on("click",".btnEliminarReserva",function(){
         var idRes = $(this).attr("idRes");
-       
-
-
+     
         Swal.fire({
             title: 'Do you want to cancel item?',
             
@@ -36,17 +34,13 @@ $(document).ready(function(){
                     }
                   });
 
-
             } 
           })
        
     })
     
-
     $(document).on("click",".btnEliminarTravel",function(){
       var idRes = $(this).attr("idRes");
-     
-
 
       Swal.fire({
           title: 'Do you want to canceled item?',
@@ -85,12 +79,9 @@ $(document).ready(function(){
      
   })
 
-
     $(document).on("click",".btnEliminaramenities",function(){
         var idRes = $(this).attr("idRes");
        
-
-
         Swal.fire({
             title: 'Do you want to cancel item?',
             
@@ -128,13 +119,6 @@ $(document).ready(function(){
        
     })
     
-
-
-
-
-
-
-
 
 
     $(".makereservasC").on('click',function()
