@@ -19,6 +19,9 @@ if (isset($_POST['rdate'])) {
    $fechafin = $fechafin->format('Y-m-d');
 }
 
+$diasTours  = "";
+$diasTravel = "";
+$diasAmenities ="";
 
 $inicio = new DateTime($fechainicio);
 $fin = new DateTime($fechafin);
@@ -63,24 +66,20 @@ if ($inicio <= $fin) {
       $lista_dias .= "'" . $fecha->format('d') . "',";
    }
 
-
-
+   if (is_array($diasTours) && !empty($diasTours)) {
    for ($i = 0; $i < count($diasTours); $i++) {
-
       $datosc[intval($diasTours[$i])] = $totalesTours[$i];
+   }}
 
-   }
-
-
-
+   if (is_array($diasAmenities) && !empty($diasAmenities)) {
    for ($i = 0; $i < count($diasTravel); $i++) {
       $datost[intval($diasTravel[$i])] = $totalesTravel[$i];
-   }
+   }}
 
-
+   if (is_array($diasAmenities) && !empty($diasAmenities)) {
    for ($i = 0; $i < count($diasAmenities); $i++) {
       $datosa[intval($diasAmenities[$i])] = $totalesAmenities[$i];
-   }
+   }}
 
 
    foreach ($datosc as $item) {
