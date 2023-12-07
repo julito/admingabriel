@@ -87,6 +87,7 @@
                            <select name="hotel" id="hotel" >
                               <option value="GABRIEL">GABRIEL</option>
                               <option value="YVE">YVE</option>
+                              <option value="GATES">GATES</option>
                            </select>
                         </div>
 
