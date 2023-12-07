@@ -76,6 +76,12 @@ class DatosReservasM
 		return $data;
 	}
 
+	static public function mdlcargarReservasCanceladas()
+	{
+		$data = DatosReservasM::CURLs('http://conciergehotline.net/api/reservaciones?select=*&Columna=estado&buscar=2');
+		return $data;
+	}
+
 	static public function eliminarReserva($id, $op, $token)
 	{
 		include_once '../Controllers/sessionController.php';

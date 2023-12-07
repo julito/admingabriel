@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 
 fechasController::getFechas($rango1,$rango2,$fechainicio,$fechafin);
 $estado[0]='Pendiente';
@@ -79,8 +79,10 @@ foreach ($datos2 as $item) {
    if ($estado[$item->estado] == 0) {
       $porcentajeacumulado2 += floatval($item->total) * 0.20;
       $reservaspendientes2++;
-   } else
+   } else if (property_exists($item, 'reservaciones_monto')) {
+
       $reservaspagadas2 += floatval($item->reservaciones_monto) * 0.20;
+   }
 }
 
 $reservas = new DatosReservasC();
@@ -122,6 +124,34 @@ $totalmontos = $montos1 + $montos2 + $montos3;
 $totalreservaspagadas = $reservaspagadas + $reservaspagadas2 + $reservaspagadas3;
 $totalporcentajes = $porcentaje1 + $porcentaje2 + $porcentaje3;
 $totalporcentajesacumulados = $porcentajeacumulado + $porcentajeacumulado2 + $porcentajeacumulado3;
+
+
+/**/
+$reservasCanceladas = new DatosReservasC();
+$canceled = $reservasCanceladas->ctrContarReservasCanceladas();
+$tableCanceled = '';
+$contarCanceled = 0;
+if (is_array($canceled) || is_object($canceled)) {
+foreach ($canceled as $item) {
+    $tableCanceled .= '<tr>
+        <td><i class="flaticon-download text-danger"></i></td>
+        <td>' . $item->nombre . '</td>
+        <td>' . $item->reservaciones_name . '</td>
+        <td>' . $item->reservaciones_monto . '</td>
+        <td>' . $item->reservaciones_cupon . '</td>
+        <td>' . $item->phone . '</td>
+        <td>' . $item->estado . '</td>
+        <td>' . $item->hecho . '</td>
+        <td>' . $item->email . '</td>
+    </tr>';
+    $contarCanceled++;
+}}
+/**/
+
+
+$diasTours  = "";
+$diasTravel = "";
+$diasAmenities ="";
 
 
 $inicio = new DateTime($fechainicio);
@@ -167,19 +197,32 @@ if($datosE)
       $lista_dias .= "'" . $fecha->format('d') . "',";
    }
 
+   if (is_array($diasTours) && !empty($diasTours)) {
+    for ($i = 0; $i < count($diasTours); $i++) {
+        $datosc[intval($diasTours[$i])] = $totalesTours[$i];
+    }}
 
-
-   for ($i = 0; $i < count($diasTours); $i++) {
+   /*for ($i = 0; $i < count($diasTours); $i++) {
       $datosc[intval($diasTours[$i])] = $totalesTours[$i];
-   }
+   }*/
 
-   for ($i = 0; $i < count($diasTravel); $i++) {
+   if (is_array($diasTravel) && !empty($diasTravel)) {
+     for ($i = 0; $i < count($diasTravel); $i++) {
       $datost[intval($diasTravel[$i])] = $totalesTravel[$i];
-   }
+   }}
 
-   for ($i = 0; $i < count($diasAmenities); $i++) {
+   /*for ($i = 0; $i < count($diasTravel); $i++) {
+      $datost[intval($diasTravel[$i])] = $totalesTravel[$i];
+   }*/
+
+   if (is_array($diasAmenities) && !empty($diasAmenities)) {
+      for ($i = 0; $i < count($diasAmenities); $i++) {
       $datosa[intval($diasAmenities[$i])] = $totalesAmenities[$i];
-   }
+   }}
+
+   /*for ($i = 0; $i < count($diasAmenities); $i++) {
+      $datosa[intval($diasAmenities[$i])] = $totalesAmenities[$i];
+   }*/
 
    foreach ($datosc as $item) {
       $ctours .= $item . ",";
@@ -234,7 +277,6 @@ $cadena = "
         }]
     });
     </script>";
-
 
 ?>
 
@@ -382,60 +424,6 @@ $cadena = "
 
    </div><br>
 
-
-   <!--
-   <div class="midde_cont">
-      <div class="container-fluid">
-         <div class="row column1">
-            <div class="col-md-6 col-lg-4">
-               <div class="full counter_section margin_bottom_30 yellow_bg">
-                  <div class="couter_icon">
-                     <div>
-                        <i class="fa fa-user"></i>
-                     </div>
-                  </div>
-                  <div class="counter_no">
-                     <div>
-                        <p class="total_no">250.50</p>
-                        <p class="head_couter">Tours</p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-               <div class="full counter_section margin_bottom_30 blue1_bg">
-                  <div class="couter_icon">
-                     <div>
-                        <i class="fa fa-clock-o"></i>
-                     </div>
-                  </div>
-                  <div class="counter_no">
-                     <div>
-                        <p class="total_no">123.50</p>
-                        <p class="head_couter">Travels</p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-               <div class="full counter_section margin_bottom_30 green_bg">
-                  <div class="couter_icon">
-                     <div>
-                        <i class="fa fa-cloud-download"></i>
-                     </div>
-                  </div>
-                  <div class="counter_no">
-                     <div>
-                        <p class="total_no">1,805</p>
-                        <p class="head_couter">Amenities</p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>-->
-
    <div class="col-md-12">
       <div class="row column1 social_media_section">
          <div class="col-md-6 col-lg-3">
@@ -517,7 +505,6 @@ $cadena = "
       </div>
 
    </div>
-
  
    <div class="midde_cont">
       <div class="container-fluid">
@@ -729,7 +716,58 @@ $cadena = "
                         <!-- end column price -->
                         <!-- column price -->
 
-                        <!-- end column price -->
+                           <!-- mostrar canceled -->
+
+   <div class="col-md-12">
+      <div class="row column1 social_media_section">
+         <div class="col-sm-3 col-md-6 col-lg-12">
+            <div class="full socile_icons google_p margin_bottom_30">
+               <div class="social_icon">
+                  <i class="fa fa-warning"></i>
+               </div>
+               <div class="social_cont">
+                  <ul>
+                     <li>
+                        <span><strong>Total Canceled</strong></span>
+                     </li>
+                     <li>
+                        <span><strong>$
+                              <?= $contarCanceled ?>
+                           </strong></span>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- inicio cancelaciones -->
+      <div class="row column1 social_media_section">
+         <div class="col-lg-12 listar">
+               <table class="table-responsive-sm table1 table-striped">
+                    <thead class="thead-success">
+                        <tr>
+                            <th>Deploy</th>
+                            <th>Name</th>
+                            <th>Reservation</th>
+                            <th>Amount</th>
+                            <th>Cupon</th>
+                            <th>Phone</th>
+                            <th>State</th>
+                            <th>Date</th>
+                            <th>E-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?= $tableCanceled ?>
+                    </tbody>
+                </table>
+         </div>
+      </div>
+      <!-- fin cancelaciones -->
+   </div>
+   <!-- fin canceled -->
+
                      </div>
                   </div>
                </div>
@@ -744,7 +782,6 @@ $cadena = "
          </div>
       </div>
    </div>
-
 
    <script>
       $(document).ready(() => {
@@ -763,9 +800,6 @@ $cadena = "
                }
             }
          });
-
-
-
       })
    </script>
 
